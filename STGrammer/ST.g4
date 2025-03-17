@@ -10,7 +10,7 @@ IDENT
     : [a-zA-Z_][a-zA-Z0-9_]*
     ;
 
-// 关键字
+// Keywords
 VAR
     : 'VAR'
     ;
@@ -51,7 +51,7 @@ ASSIGN
     : ':='
     ;
 
-// 运算符
+// Operators
 ADD
     : '+'
     ;
@@ -68,7 +68,7 @@ DIV
     : '/'
     ;
 
-// 分隔符
+// Delimiters
 SEMI
     : ';'
     ;
@@ -85,7 +85,6 @@ RPAREN
     : ')'
     ;
 
-// 注释
 WS
     : [ \t\r\n]+ -> skip
     ;
@@ -98,12 +97,12 @@ statement
     | forStmt
     ;
 
-// 变量声明
+// Variable Declaration
 varDeclaration
     : 'VAR' ID ':' type ';' 'END_VAR'
     ;
 
-// 赋值语句
+// Assignment Statement
 assignStmt
     : ID ':=' expr ';'
     ;
