@@ -14,9 +14,15 @@ wget https://www.antlr.org/download/antlr-4.9.3-complete.jar
 ```
 Next, configure the environment variables:
 ```
+vim ~/.bashrc
 export CLASSPATH=“/root/codes/llvm/st_builder/STGrammer/antlr-4.9.3-complete.jar:$CLASSPATH”
 alias antlr4='java -jar /root/codes/llvm/st_builder/STGrammer/antlr-4.9.3-complete.jar'
 alias grun='java org.antlr.v4.gui.TestRig'
 source ~/.bashrc
 ```
 Enter `antlr4` in the terminal and there is version information, which means it is installed.
+
+Generate Lexer and Parser code (C++ version), using visitor mode here:
+```
+antlr4 -Dlanguage=Cpp -visitor ST.g4
+```
