@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSTVisitorLib.a CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.o
+/usr/bin/ranlib libSTVisitorLib.a
