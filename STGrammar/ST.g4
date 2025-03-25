@@ -54,6 +54,13 @@ WS
     : [ \t\r\n]+ -> skip
     ;
 
+COMMENT_LINE
+    :  '//' ~[\r\n]* -> skip
+    ;
+
+COMMENT_PARA
+    :  '/*' .*? '*/' -> skip
+    ;
 
 assignStmt
     : prefixExpr ':=' (expr | callFuncStmt)
