@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSTGrammarLib.a CMakeFiles/STGrammarLib.dir/STLexer.cpp.o CMakeFiles/STGrammarLib.dir/STParser.cpp.o CMakeFiles/STGrammarLib.dir/STBaseVisitor.cpp.o CMakeFiles/STGrammarLib.dir/STVisitor.cpp.o CMakeFiles/STGrammarLib.dir/STBaseListener.cpp.o CMakeFiles/STGrammarLib.dir/STListener.cpp.o
+/usr/bin/ranlib libSTGrammarLib.a

@@ -1,0 +1,9 @@
+/root/codes/llvm/st_builder/build/CMakeFiles/st_builder.dir
+/root/codes/llvm/st_builder/build/CMakeFiles/edit_cache.dir
+/root/codes/llvm/st_builder/build/CMakeFiles/rebuild_cache.dir
+/root/codes/llvm/st_builder/build/STGrammar/CMakeFiles/STGrammarLib.dir
+/root/codes/llvm/st_builder/build/STGrammar/CMakeFiles/edit_cache.dir
+/root/codes/llvm/st_builder/build/STGrammar/CMakeFiles/rebuild_cache.dir
+/root/codes/llvm/st_builder/build/STVisitor/CMakeFiles/STVisitorLib.dir
+/root/codes/llvm/st_builder/build/STVisitor/CMakeFiles/edit_cache.dir
+/root/codes/llvm/st_builder/build/STVisitor/CMakeFiles/rebuild_cache.dir

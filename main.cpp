@@ -5,6 +5,7 @@
 #include "STGrammar/STParser.h"
 #include "STGrammar/STLexer.h"
 #include "STGrammar/STBaseVisitor.h"
+#include "STParserVisitor.h"
 
 int main(int argc, const char* argv[]) {
     std::fstream inputFile(argv[1]);
@@ -25,8 +26,12 @@ int main(int argc, const char* argv[]) {
 
     antlr4::tree::ParseTree* tree = parser.startpoint();
 
-    std::cout << "parse tree:" << std::endl;
-    std::cout << tree->toStringTree(&parser) << std::endl;
+//    std::cout << "parse tree:" << std::endl;
+//    std::cout << tree->toStringTree(&parser) << std::endl;
+
+    // 遍历语法树
+    newSTVisitor visitor;
+    visitor.visit(tree);
 
     return 0;
 }

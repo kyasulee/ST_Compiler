@@ -20,3 +20,5 @@ target_include_directories(st_builder PRIVATE ${ANTLR_INCLUDE_DIR})
 # 链接库文件
 target_link_directories(st_builder PRIVATE ${ANTLR_LIB_DIR})
 target_link_libraries(st_builder PRIVATE antlr4-runtime)
+target_link_libraries(st_builder PRIVATE STVisitorLib)
+target_link_libraries(st_builder PRIVATE STGrammarLib)

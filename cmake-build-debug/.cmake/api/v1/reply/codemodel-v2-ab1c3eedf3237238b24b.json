@@ -1,0 +1,138 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "STGrammar",
+					"jsonFile" : "directory-STGrammar-Debug-cea214099d44c7048c6c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "STGrammar",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "STVisitor",
+					"jsonFile" : "directory-STVisitor-Debug-755dd7511d1b364434ee.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "STVisitor",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "st_builder",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "STGrammar",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "STVisitor",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "STGrammarLib::@b73edd801a3cb4e5f1a3",
+					"jsonFile" : "target-STGrammarLib-Debug-ad0dca101a6ee7048084.json",
+					"name" : "STGrammarLib",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "STVisitorLib::@3515fd6094ba994e8550",
+					"jsonFile" : "target-STVisitorLib-Debug-c15a94ccbdc50ba43cb7.json",
+					"name" : "STVisitorLib",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "st_builder::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-st_builder-Debug-27fd3bd1fe14103b07c9.json",
+					"name" : "st_builder",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/root/codes/llvm/st_builder/cmake-build-debug",
+		"source" : "/root/codes/llvm/st_builder"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

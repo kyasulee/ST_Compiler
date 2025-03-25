@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/st_builder.dir/main.cpp.o -o st_builder   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -lantlr4-runtime STVisitor/libSTVisitorLib.a STGrammar/libSTGrammarLib.a -lantlr4-runtime 

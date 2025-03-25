@@ -70,3 +70,113 @@ antlrcpp::Any newSTVisitor::visitProgramDecl(STParser::ProgramDeclContext *ctx) 
     }
     return nullptr;
 }
+
+antlrcpp::Any newSTVisitor::visitStatement_list(STParser::Statement_listContext *ctx) {
+    std::cout << "Visiting Statement_list:" << std::endl;
+
+    if (ctx->assignStmt()) {
+        std::cout << "now is assignStmt" << std::endl;
+        visit(ctx->assignStmt());
+    } else if (ctx->selectStmt()) {
+        std::cout << "now is selectStmt" << std::endl;
+        visit(ctx->selectStmt());
+    } else if (ctx->iterationStmt()) {
+        std::cout << "now is iterationStmt" << std::endl;
+        visit(ctx->iterationStmt());
+    } else if (ctx->callFuncStmt()) {
+        std::cout << "now is callFuncStmt" << std::endl;
+        visit(ctx->callFuncStmt());
+    } else if (ctx->jumpStmt()) {
+        std::cout << "now is jumpStmt" << std::endl;
+        visit(ctx->jumpStmt());
+    }
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitSelectStmt(STParser::SelectStmtContext *ctx) {
+    std::cout << "Visiting SelectStmt:" << std::endl;
+
+    if(ctx->ifStmt()) {
+        std::cout << "now found if statement" << std::endl;
+        visit(ctx->ifStmt());
+    } else if (ctx->caseStmt()) {
+        std::cout << "now found case statement" << std::endl;
+        visit(ctx->caseStmt());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitIterationStmt(STParser::IterationStmtContext *ctx) {
+    std::cout << "Visiting IterationStmt:" << std::endl;
+
+    if (ctx->whileStmt()) {
+        std::cout << "now found while statement" << std::endl;
+        visit(ctx->whileStmt());
+    } else if (ctx->forStmt()) {
+        std::cout << "now found for statement" << std::endl;
+        visit(ctx->forStmt());
+    } else if (ctx->repeatStmt()) {
+        std::cout << "now found repeat statement" << std::endl;
+        visit(ctx->repeatStmt());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitCallFuncStmt(STParser::CallFuncStmtContext *ctx) {
+    std::cout << "Visiting CallFuncStmt:" << std::endl;
+
+    std::string funcName;
+    if (ctx->IDENT()) {
+        funcName = ctx->IDENT()->getText();
+    } else {
+        funcName = ctx->getText(); // 'AND' | 'OR' | 'XOR' | 'MOD' | 'NOT'
+    }
+    std::cout << "function name is:" << funcName << std::endl;
+
+    if (ctx->funcParams()) {
+        std::cout << "now visiting funcParams" << std::endl;
+        visit(ctx->funcParams());
+    } else {
+        std::cout << "there is no parameters provided" << std::endl;
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitJumpStmt(STParser::JumpStmtContext *ctx) {
+    std::cout << "Visiting JumpStmt:" << std::endl;
+
+    if (ctx->getText() == "BREAK") {
+        std::cout << "Found BREAK Statement" << std::endl;
+    } else if (ctx->getText() == "RETURN") {
+        std::cout << "Found RETURN Statement" << std::endl;
+    } else if (ctx->getText() == "CONTINUE") {
+        std::cout << "Found CONTINUE Statement" << std::endl;
+    } else if (ctx->getText() == "EXIT") {
+        std::cout << "Found EXIT Statement" << std::endl;
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitAssignStmt(STParser::AssignStmtContext *ctx) {
+    std::cout << "Visiting AssignStmt:" << std::endl;
+
+    std::string leftValue;
+    if (ctx->prefixExpr()) {
+        leftValue = ctx->prefixExpr()->getText();
+        std::cout << "Left Value of AssignStmt is:" << leftValue << std::endl;
+    }
+
+    if (ctx->expr()) {
+        std::cout << "Right Value of AssignStmt is:" << ctx->expr()->getText() << std::endl;
+        visit(ctx->expr());
+    } else if (ctx->callFuncStmt()) {
+        std::cout << "Right Value of AssignStmt is:" << ctx->callFuncStmt()->getText() << std::endl;
+        visit(ctx->callFuncStmt());
+    }
+
+    return nullptr;
+}
