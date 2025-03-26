@@ -180,3 +180,414 @@ antlrcpp::Any newSTVisitor::visitAssignStmt(STParser::AssignStmtContext *ctx) {
 
     return nullptr;
 }
+
+antlrcpp::Any newSTVisitor::visitPrefixExpr(STParser::PrefixExprContext *ctx) {
+    std::cout << "Visiting PrefixExpr:" << std::endl;
+
+    std::string identifier;
+    if (ctx->ident()) {
+        identifier = ctx->ident()->getText();
+        std::cout << "identifier is:" << identifier << std::endl;
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitExpr(STParser::ExprContext *ctx) {
+    std::cout << "Visiting Expr:" << std::endl;
+
+    if (ctx->orExpr()) {
+        visit(ctx->orExpr());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitOrExpr(STParser::OrExprContext *ctx) {
+    std::cout  << "Visiting OrExpr:" << std::endl;
+
+    if (ctx->orExpr() && ctx->andExpr()) {
+        std::string op = ctx->getText();
+        std::cout << "operator is:" << op << std::endl;
+
+        visit(ctx->orExpr());
+        visit(ctx->andExpr());
+    } else {
+        visit(ctx->andExpr());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitAndExpr(STParser::AndExprContext *ctx) {
+    std::cout  << "Visiting AddExpr:" << std::endl;
+
+    if (ctx->andExpr() && ctx->equalExpr()) {
+        std::string op = ctx->getText();
+        std::cout << "operator is:" << op << std::endl;
+
+        visit(ctx->andExpr());
+        visit(ctx->equalExpr());
+    } else {
+        visit(ctx->equalExpr());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitEqualExpr(STParser::EqualExprContext *ctx) {
+    std::cout  << "Visiting EqualExpr:" << std::endl;
+
+    if (ctx->equalExpr() && ctx->relationExpr()) {
+        std::string op = ctx->getText();
+        std::cout << "operator is:" << op << std::endl;
+
+        visit(ctx->equalExpr());
+        visit(ctx->relationExpr());
+    } else {
+        visit(ctx->relationExpr());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitRelationExpr(STParser::RelationExprContext *ctx) {
+    std::cout  << "Visiting RelationExpr:" << std::endl;
+
+    if (ctx->relationExpr() && ctx->addExpr()) {
+        std::string op = ctx->getText();
+        std::cout << "operator is:" << op << std::endl;
+
+        visit(ctx->relationExpr());
+        visit(ctx->addExpr());
+    } else {
+        visit(ctx->addExpr());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitAddExpr(STParser::AddExprContext *ctx) {
+    std::cout  << "Visiting AddExpr:" << std::endl;
+
+    if (ctx->addExpr() && ctx->multipliExpr()) {
+        std::string op = ctx->getText();
+        std::cout << "operator is:" << op << std::endl;
+
+        visit(ctx->addExpr());
+        visit(ctx->multipliExpr());
+    } else {
+        visit(ctx->multipliExpr());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitMultipliExpr(STParser::MultipliExprContext *ctx) {
+    std::cout  << "Visiting MultipliExpr:" << std::endl;
+
+    if (ctx->unaryExpr() && ctx->multipliExpr()) {
+        std::string op = ctx->getText();
+        std::cout << "operator is:" << op << std::endl;
+
+        visit(ctx->multipliExpr());
+        visit(ctx->unaryExpr());
+    } else {
+        visit(ctx->unaryExpr());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitUnaryExpr(STParser::UnaryExprContext *ctx) {
+    std::cout  << "Visiting UnaryExpr:" << std::endl;
+
+    std::string op = ctx->getText();
+    std::cout << "operator is:" << op << std::endl;
+
+    visit(ctx->primary());
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitPrimary(STParser::PrimaryContext *ctx) {
+    std::cout  << "Visiting Primary:" << std::endl;
+    if(ctx->expr()) {
+        visit(ctx->expr());
+    } else if (ctx->IDENT()) {
+        std::string identifier = ctx->IDENT()->getText();
+    } else if (ctx->NUMBER()) {
+        std::string number = ctx->NUMBER()->getText();
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitIfStmt(STParser::IfStmtContext *ctx) {
+    std::cout  << "Visiting IfStmt:" << std::endl;
+
+    std::cout << "if condition is:" << ctx->expr()->getText() << std::endl;
+    visit(ctx->expr());
+
+    std::cout << "then branch is:" << std::endl;
+    for (auto stmt : ctx->statement_list()) {
+        visit(stmt);
+    }
+
+    if (ctx->getText() == "ELSE") {
+        std::cout << "else branch is:" << std::endl;
+        for (auto stmt : ctx->statement_list()) {
+            visit(stmt);
+        }
+    }
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitCaseStmt(STParser::CaseStmtContext *ctx) {
+    std::cout  << "Visiting CaseStmt:" << std::endl;
+
+    std::cout << "Selector Expression:" << std::endl;
+    visit(ctx->expr());
+
+    // 处理分支列表
+    std::cout << "Processing Case List:" << std::endl;
+    visit(ctx->caseList());
+
+    // 检查是否存在 ELSE 分支
+    if (ctx->getText() == "ELSE") {
+        std::cout << "else branch:" << std::endl;
+        for (auto stmt : ctx->statement_list()) {
+            visit(stmt);
+        }
+    }
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitCaseList(STParser::CaseListContext *ctx) {
+    std::cout  << "Visiting CaseList:" << std::endl;
+
+    for (size_t i = 0; i < ctx->caseValues().size(); i++) {
+        std::cout << "case values:" << std::endl;
+        visit(ctx->caseValues(i));
+
+        std::cout << "case Statements:" << std::endl;
+        visit(ctx->statement_list(i));
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitCaseValues(STParser::CaseValuesContext *ctx) {
+    std::cout  << "Visiting CaseValues:" << std::endl;
+
+    for (auto value : ctx->expr()) {
+        std::cout << "value is:" << value->getText() << std::endl;
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitForStmt(STParser::ForStmtContext *ctx) {
+    std::cout << "Visiting ForStmt:" << std::endl;
+
+    if (ctx->assignStmt()) {
+        visit(ctx->assignStmt());
+    }
+    if (ctx->expr(0)) {
+        visit(ctx->expr(0));
+    }
+
+    if (ctx->getText() == "BY") {
+        std::cout << "step value is:" << std::endl;
+        visit(ctx->expr(1));
+    } else  {
+        std::cout << "step value is default 1:" << std::endl;
+    }
+
+    for(auto stmt : ctx->statement_list()) {
+        visit(stmt);
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitWhileStmt(STParser::WhileStmtContext *ctx) {
+    std::cout << "Visiting WhileStmt:" << std::endl;
+
+    if (ctx->expr()) {
+        std::cout << "while condition is" << std::endl;
+        visit(ctx->expr());
+    }
+
+    for(auto stmt : ctx->statement_list()) {
+        visit(stmt);
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitRepeatStmt(STParser::RepeatStmtContext *ctx) {
+    std::cout << "Visiting RepeatStmt" << std::endl;
+
+    for(auto stmt : ctx->statement_list()) {
+        visit(stmt);
+    }
+
+    if (ctx->expr()) {
+        visit(ctx->expr());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitType(STParser::TypeContext *ctx) {
+    std::cout << "Visiting Type:" << ctx->getText() << std::endl;
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitFuncParams(STParser::FuncParamsContext *ctx) {
+    std::cout << "Visiting FuncParams:" << std::endl;
+
+    for (size_t i = 0; i < ctx->children.size(); i++) {
+        auto child = ctx->children[i];
+
+        if (auto identCtx = dynamic_cast<STParser::IdentContext*>(child)) {
+            std::string paramName = identCtx->getText();
+            std::cout << "paramName is:" << paramName << std::endl;
+
+            if (i + 1 < ctx->children.size()) {
+                auto nextChild = ctx->children[i + 1];
+                if (nextChild->getText() == ":=") {
+                    std::cout << ":=";
+                    visit(ctx->expr(i / 2));
+                    ++i;
+                } else if (nextChild->getText() == "=>") {
+                    std::cout << "=>";
+                    if (i + 2 < ctx->children.size()) {
+                        auto mappedIdent = ctx->children[i + 2];
+                        std::cout << mappedIdent->getText();
+                        i += 2;
+                    } else {
+                        std::cout << "no value provided" << std::endl;
+                    }
+                } else {
+                    std::cout << "no value provided" << std::endl;
+                }
+            } else if (auto exprCtx = dynamic_cast<STParser::ExprContext*>(child)){
+                std::cout << "Expression Parameter: ";
+                visit(exprCtx);  // 访问表达式
+                std::cout << std::endl;
+            }
+        }
+    }
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitIdenti(STParser::IdentiContext *ctx) {
+    std::cout << "Visiting simple identifier" << std::endl;
+
+    std::string identifier = ctx->IDENT()->getText();
+    std::cout << "identifier is:" << identifier << std::endl;
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitArray(STParser::ArrayContext *ctx) {
+    std::cout << "Visiting array" << std::endl;
+
+    std::string arrayName = ctx->IDENT()->getText();
+    std::cout << "arrayName is:" << arrayName << std::endl;
+
+    for (auto idxExpr : ctx->expr()) {
+        visit(idxExpr);
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitStruct(STParser::StructContext *ctx) {
+    std::cout << "Visiting struct" << std::endl;
+
+    visit(ctx->ident(0));
+
+    visit(ctx->ident(1));
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitDeclarationStmt(STParser::DeclarationStmtContext *ctx) {
+    std::cout << "Visiting DeclarationStmt" << std::endl;
+
+    if(ctx->varDeclaration()) {
+        visit(ctx->varDeclaration());
+    } else if (ctx->varDeclarationBlock()) {
+        visit(ctx->varDeclarationBlock());
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitVarDeclarationBlock(STParser::VarDeclarationBlockContext *ctx) {
+    std::cout << "Visiting DeclarationBlock" << std::endl;
+
+    for (auto stmt:ctx->varDeclaration()) {
+        visit(stmt);
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitVarDeclaration(STParser::VarDeclarationContext *ctx) {
+    std::cout << "Visiting VarDeclaration" << std::endl;
+
+    std::string varName = ctx->IDENT()->getText();
+    std::cout << "varName is:" << varName << std::endl;
+
+    visit(ctx->type());
+
+    if (ctx->NUMBER()) {
+        std::string initialValue = ctx->NUMBER()->getText();
+        std::cout << "initialValue is:" << initialValue << std::endl;
+    } else {
+        std::cout << "No initialValue"<< std::endl;
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitFunctionDecl(STParser::FunctionDeclContext *ctx) {
+    std::cout << "Visiting FunctionDecl" << std::endl;
+
+    std::string functionName = ctx->IDENT()->getText();
+    std::cout << "function name is:" << functionName << std::endl;
+
+    visit(ctx->type());
+
+    for (auto varBlock : ctx->varDeclarationBlock()) {
+        visit(varBlock);
+    }
+
+    for (auto stmt : ctx->statement_list()) {
+        visit(stmt);
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitFunctionBlockDecl(STParser::FunctionBlockDeclContext *ctx) {
+    std::cout << "Visiting FunctionBlockDecl" << std::endl;
+
+    std::string functionBlockName = ctx->IDENT()->getText();
+    std::cout << "function block name is:" << functionBlockName << std::endl;
+
+    for (auto varBlock : ctx->varDeclarationBlock()) {
+        visit(varBlock);
+    }
+
+    for(auto stmt : ctx->statement_list()) {
+        visit(stmt);
+    }
+
+    return nullptr;
+}
