@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/root/codes/llvm/st_builder/STVisitor -I/root/codes/llvm/st_builder/STVisitor/../STGrammar -I/root/codes/llvm/st_builder/STGrammar
 
-CXX_FLAGS = -g -fdiagnostics-color=always
+CXX_FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
 

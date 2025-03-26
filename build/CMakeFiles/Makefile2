@@ -117,12 +117,12 @@ CMakeFiles/st_builder.dir/all: STGrammar/CMakeFiles/STGrammarLib.dir/all
 CMakeFiles/st_builder.dir/all: STVisitor/CMakeFiles/STVisitorLib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/st_builder.dir/build.make CMakeFiles/st_builder.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/st_builder.dir/build.make CMakeFiles/st_builder.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/build/CMakeFiles --progress-num=10,11 "Built target st_builder"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/build/CMakeFiles --progress-num=11,12 "Built target st_builder"
 .PHONY : CMakeFiles/st_builder.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/st_builder.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/build/CMakeFiles 12
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/st_builder.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/build/CMakeFiles 0
 .PHONY : CMakeFiles/st_builder.dir/rule
@@ -169,12 +169,12 @@ STGrammar/CMakeFiles/STGrammarLib.dir/clean:
 STVisitor/CMakeFiles/STVisitorLib.dir/all: STGrammar/CMakeFiles/STGrammarLib.dir/all
 	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/depend
 	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/build/CMakeFiles --progress-num=8,9 "Built target STVisitorLib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/build/CMakeFiles --progress-num=8,9,10 "Built target STVisitorLib"
 .PHONY : STVisitor/CMakeFiles/STVisitorLib.dir/all
 
 # Build rule for subdir invocation for target.
 STVisitor/CMakeFiles/STVisitorLib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/STVisitorLib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/build/CMakeFiles 0
 .PHONY : STVisitor/CMakeFiles/STVisitorLib.dir/rule

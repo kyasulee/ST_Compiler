@@ -154,6 +154,30 @@ STParserVisitor.cpp.s:
 	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.s
 .PHONY : STParserVisitor.cpp.s
 
+SymbolTable.o: SymbolTable.cpp.o
+.PHONY : SymbolTable.o
+
+# target to build an object file
+SymbolTable.cpp.o:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/SymbolTable.cpp.o
+.PHONY : SymbolTable.cpp.o
+
+SymbolTable.i: SymbolTable.cpp.i
+.PHONY : SymbolTable.i
+
+# target to preprocess a source file
+SymbolTable.cpp.i:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/SymbolTable.cpp.i
+.PHONY : SymbolTable.cpp.i
+
+SymbolTable.s: SymbolTable.cpp.s
+.PHONY : SymbolTable.s
+
+# target to generate assembly for a file
+SymbolTable.cpp.s:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/SymbolTable.cpp.s
+.PHONY : SymbolTable.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -166,6 +190,9 @@ help:
 	@echo "... STParserVisitor.o"
 	@echo "... STParserVisitor.i"
 	@echo "... STParserVisitor.s"
+	@echo "... SymbolTable.o"
+	@echo "... SymbolTable.i"
+	@echo "... SymbolTable.s"
 .PHONY : help
 
 

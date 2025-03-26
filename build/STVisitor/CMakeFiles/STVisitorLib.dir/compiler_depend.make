@@ -455,6 +455,11 @@ STVisitor/CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.o: /root/codes/llvm/st
   /usr/local/include/tree/xpath/XPathWildcardAnywhereElement.h \
   /usr/local/include/tree/xpath/XPathWildcardElement.h
 
+STVisitor/CMakeFiles/STVisitorLib.dir/SymbolTable.cpp.o: /root/codes/llvm/st_builder/STVisitor/SymbolTable.cpp \
+  /usr/include/stdc-predef.h
+
+
+/root/codes/llvm/st_builder/STVisitor/SymbolTable.cpp:
 
 /usr/local/include/tree/xpath/XPathWildcardElement.h:
 
