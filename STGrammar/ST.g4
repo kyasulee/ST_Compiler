@@ -9,8 +9,9 @@ program_list
     ;
 
 programDecl
-    : 'PROGRAM' IDENT  declarationStmt?  statement_list*  'END_PROGRAM'
+    : PROGRAM IDENT  declarationStmt?  statement_list*  END_PROGRAM
     ;
+
 
 statement_list
     : assignStmt? ';'
@@ -116,11 +117,11 @@ primary
     ;
 
 ifStmt
-    : 'IF' expr 'THEN' statement_list* ('ELSE' statement_list*)?  'END_IF'
+    : IF expr THEN statement_list* (ELSE statement_list*)?  END_IF
     ;
 
 caseStmt
-    : 'CASE' expr 'OF' caseList ('ELSE' statement_list*)? 'END_CASE'
+    : CASE expr OF caseList (ELSE statement_list*)? END_CASE
     ;
 
 caseList
@@ -132,21 +133,22 @@ caseValues
     ;
 
 forStmt
-    :  'FOR' assignStmt 'TO' expr ('BY' expr)? 'DO' statement_list* 'END_FOR'
+    :  FOR assignStmt TO expr (BY expr)? DO statement_list* END_FOR
     ;
 
 whileStmt
-    : 'WHILE' expr 'DO' statement_list* 'END_WHILE'
+    : WHILE expr DO statement_list* END_WHILE
     ;
 
+
 repeatStmt
-    : 'REPEAT' statement_list* 'UNTIL' expr 'END_REPEAT'
+    : REPEAT statement_list* UNTIL expr END_REPEAT
     ;
 
 type
-    : 'INT' | 'SINT' | 'DINT' | 'LINT' | 'USINT' | 'UINT' | 'UDINT' | 'ULINT'
-    | 'REAL' | 'LREAL'
-    | 'BOOL' | 'BYTE' | 'WORD' | 'DWORD' | 'LWORD'
+    : INT | SINT | DINT | LINT | USINT | UINT | UDINT | ULINT
+    | REAL | LREAL
+    | BOOL | BYTE | WORD | DWORD | LWORD
     ;
 
 funcParams
@@ -167,9 +169,9 @@ declarationStmt
     ;
 
 varDeclarationBlock
-    : ('VAR' | 'VAR_INPUT' | 'VAR_OUTPUT' | 'VAR_IN_OUT' | 'VAR_TEMP')
+    : (VAR | VAR_INPUT | VAR_OUTPUT | VAR_IN_OUT | VAR_TEMP)
       varDeclaration*
-      'END_VAR'
+      END_VAR
     ;
 
 varDeclaration
@@ -177,9 +179,55 @@ varDeclaration
     ;
 
 functionDecl
-    : 'FUNCTION' IDENT ':' type varDeclarationBlock*  statement_list* 'END_FUNCTION'
+    : FUNCTION IDENT ':' type varDeclarationBlock*  statement_list* END_FUNCTION
     ;
 
 functionBlockDecl
-    : 'FUNCTION_BLOCK' IDENT  varDeclarationBlock*  statement_list* 'END_FUNCTION_BLOCK'
+    : FUNCTION_BLOCK IDENT  varDeclarationBlock*  statement_list* END_FUNCTION_BLOCK
     ;
+
+// lexer
+VAR: 'VAR';
+VAR_INPUT : 'VAR_INPUT';
+VAR_OUTPUT: 'VAR_OUTPUT';
+VAR_IN_OUT: 'VAR_IN_OUT';
+VAR_TEMP: 'VAR_TEMP';
+END_VAR: 'END_VAR';
+FUNCTION: 'FUNCTION';
+END_FUNCTION: 'END_FUNCTION';
+FUNCTION_BLOCK: 'FUNCTION_BLOCK';
+END_FUNCTION_BLOCK: 'END_FUNCTION_BLOCK';
+INT: 'INT';
+SINT: 'SINT';
+DINT: 'DINT';
+LINT: 'LINT';
+USINT: 'USINT';
+UINT: 'UINT';
+UDINT: 'UDINT';
+ULINT: 'ULINT';
+REAL: 'REAL';
+LREAL: 'LREAL';
+BOOL : 'BOOL';
+BYTE: 'BYTE';
+WORD: 'WORD';
+DWORD: 'DWORD';
+LWORD: 'LWORD';
+FOR: 'FOR';
+TO: 'TO';
+BY: 'BY';
+END_FOR: 'END_FOR';
+WHILE: 'WHILE';
+DO: 'DO';
+END_WHILE: 'END_WHILE';
+REPEAT: 'REPEAT';
+UNTIL: 'UNTIL';
+END_REPEAT: 'END_REPEAT';
+PROGRAM : 'PROGRAM';
+END_PROGRAM: 'END_PROGRAM';
+IF : 'IF';
+THEN: 'THEN';
+ELSE: 'ELSE';
+END_IF: 'END_IF';
+CASE: 'CASE';
+OF: 'OF';
+END_CASE: 'END_CASE';
