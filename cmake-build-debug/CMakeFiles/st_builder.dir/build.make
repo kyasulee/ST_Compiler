@@ -94,6 +94,15 @@ st_builder: CMakeFiles/st_builder.dir/main.cpp.o
 st_builder: CMakeFiles/st_builder.dir/build.make
 st_builder: STVisitor/libSTVisitorLib.a
 st_builder: STGrammar/libSTGrammarLib.a
+st_builder: /home/wjq/workspace/llvm/lib/libLLVMCore.a
+st_builder: /home/wjq/workspace/llvm/lib/libLLVMBinaryFormat.a
+st_builder: /home/wjq/workspace/llvm/lib/libLLVMRemarks.a
+st_builder: /home/wjq/workspace/llvm/lib/libLLVMBitstreamReader.a
+st_builder: /home/wjq/workspace/llvm/lib/libLLVMTargetParser.a
+st_builder: /home/wjq/workspace/llvm/lib/libLLVMSupport.a
+st_builder: /home/wjq/workspace/llvm/lib/libLLVMDemangle.a
+st_builder: /usr/lib/x86_64-linux-gnu/libz.so
+st_builder: /usr/lib/x86_64-linux-gnu/libzstd.so
 st_builder: CMakeFiles/st_builder.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable st_builder"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/st_builder.dir/link.txt --verbose=$(VERBOSE)

@@ -117,6 +117,104 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+STVisitor/CMakeFiles/intrinsics_gen.dir/rule:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/intrinsics_gen.dir/rule
+.PHONY : STVisitor/CMakeFiles/intrinsics_gen.dir/rule
+
+# Convenience name for target.
+intrinsics_gen: STVisitor/CMakeFiles/intrinsics_gen.dir/rule
+.PHONY : intrinsics_gen
+
+# fast build rule for target.
+intrinsics_gen/fast:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/intrinsics_gen.dir/build.make STVisitor/CMakeFiles/intrinsics_gen.dir/build
+.PHONY : intrinsics_gen/fast
+
+# Convenience name for target.
+STVisitor/CMakeFiles/vt_gen.dir/rule:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/vt_gen.dir/rule
+.PHONY : STVisitor/CMakeFiles/vt_gen.dir/rule
+
+# Convenience name for target.
+vt_gen: STVisitor/CMakeFiles/vt_gen.dir/rule
+.PHONY : vt_gen
+
+# fast build rule for target.
+vt_gen/fast:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/vt_gen.dir/build.make STVisitor/CMakeFiles/vt_gen.dir/build
+.PHONY : vt_gen/fast
+
+# Convenience name for target.
+STVisitor/CMakeFiles/omp_gen.dir/rule:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/omp_gen.dir/rule
+.PHONY : STVisitor/CMakeFiles/omp_gen.dir/rule
+
+# Convenience name for target.
+omp_gen: STVisitor/CMakeFiles/omp_gen.dir/rule
+.PHONY : omp_gen
+
+# fast build rule for target.
+omp_gen/fast:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/omp_gen.dir/build.make STVisitor/CMakeFiles/omp_gen.dir/build
+.PHONY : omp_gen/fast
+
+# Convenience name for target.
+STVisitor/CMakeFiles/acc_gen.dir/rule:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/acc_gen.dir/rule
+.PHONY : STVisitor/CMakeFiles/acc_gen.dir/rule
+
+# Convenience name for target.
+acc_gen: STVisitor/CMakeFiles/acc_gen.dir/rule
+.PHONY : acc_gen
+
+# fast build rule for target.
+acc_gen/fast:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/acc_gen.dir/build.make STVisitor/CMakeFiles/acc_gen.dir/build
+.PHONY : acc_gen/fast
+
+# Convenience name for target.
+STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/rule:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/rule
+.PHONY : STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/rule
+
+# Convenience name for target.
+ARMTargetParserTableGen: STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/rule
+.PHONY : ARMTargetParserTableGen
+
+# fast build rule for target.
+ARMTargetParserTableGen/fast:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/build
+.PHONY : ARMTargetParserTableGen/fast
+
+# Convenience name for target.
+STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/rule:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/rule
+.PHONY : STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/rule
+
+# Convenience name for target.
+AArch64TargetParserTableGen: STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/rule
+.PHONY : AArch64TargetParserTableGen
+
+# fast build rule for target.
+AArch64TargetParserTableGen/fast:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/build.make STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/build
+.PHONY : AArch64TargetParserTableGen/fast
+
+# Convenience name for target.
+STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/rule:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/rule
+.PHONY : STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/rule
+
+# Convenience name for target.
+RISCVTargetParserTableGen: STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/rule
+.PHONY : RISCVTargetParserTableGen
+
+# fast build rule for target.
+RISCVTargetParserTableGen/fast:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/build
+.PHONY : RISCVTargetParserTableGen/fast
+
+# Convenience name for target.
 STVisitor/CMakeFiles/STVisitorLib.dir/rule:
 	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/STVisitorLib.dir/rule
 .PHONY : STVisitor/CMakeFiles/STVisitorLib.dir/rule
@@ -186,6 +284,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... AArch64TargetParserTableGen"
+	@echo "... ARMTargetParserTableGen"
+	@echo "... RISCVTargetParserTableGen"
+	@echo "... acc_gen"
+	@echo "... intrinsics_gen"
+	@echo "... omp_gen"
+	@echo "... vt_gen"
 	@echo "... STVisitorLib"
 	@echo "... STParserVisitor.o"
 	@echo "... STParserVisitor.i"

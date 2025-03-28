@@ -20,7 +20,7 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						2
+						8
 					]
 				},
 				{
@@ -35,7 +35,7 @@
 					"source" : "STGrammar",
 					"targetIndexes" : 
 					[
-						0
+						3
 					]
 				},
 				{
@@ -50,7 +50,14 @@
 					"source" : "STVisitor",
 					"targetIndexes" : 
 					[
-						1
+						0,
+						1,
+						2,
+						4,
+						5,
+						6,
+						7,
+						9
 					]
 				}
 			],
@@ -70,7 +77,7 @@
 					"name" : "st_builder",
 					"targetIndexes" : 
 					[
-						2
+						8
 					]
 				},
 				{
@@ -82,7 +89,7 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						0
+						3
 					]
 				},
 				{
@@ -94,12 +101,40 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						1
+						0,
+						1,
+						2,
+						4,
+						5,
+						6,
+						7,
+						9
 					]
 				}
 			],
 			"targets" : 
 			[
+				{
+					"directoryIndex" : 2,
+					"id" : "AArch64TargetParserTableGen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-AArch64TargetParserTableGen-Debug-eb6f8d7a369ea217b4e0.json",
+					"name" : "AArch64TargetParserTableGen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ARMTargetParserTableGen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-ARMTargetParserTableGen-Debug-b3319e2b1baa6691862f.json",
+					"name" : "ARMTargetParserTableGen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "RISCVTargetParserTableGen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-RISCVTargetParserTableGen-Debug-fd4b0ad312980502b547.json",
+					"name" : "RISCVTargetParserTableGen",
+					"projectIndex" : 2
+				},
 				{
 					"directoryIndex" : 1,
 					"id" : "STGrammarLib::@b73edd801a3cb4e5f1a3",
@@ -110,16 +145,44 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "STVisitorLib::@3515fd6094ba994e8550",
-					"jsonFile" : "target-STVisitorLib-Debug-df420d9e0a65b0499d55.json",
+					"jsonFile" : "target-STVisitorLib-Debug-b87a20bddd8215307323.json",
 					"name" : "STVisitorLib",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "acc_gen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-acc_gen-Debug-08bac1e0b236e977e638.json",
+					"name" : "acc_gen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "intrinsics_gen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-intrinsics_gen-Debug-dbec5322119d32039a30.json",
+					"name" : "intrinsics_gen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "omp_gen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-omp_gen-Debug-4fa2b9a1eb0111f28cbe.json",
+					"name" : "omp_gen",
 					"projectIndex" : 2
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "st_builder::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-st_builder-Debug-27fd3bd1fe14103b07c9.json",
+					"jsonFile" : "target-st_builder-Debug-698811e7fbfe77f945a0.json",
 					"name" : "st_builder",
 					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "vt_gen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-vt_gen-Debug-ed521dabdbc1043eede1.json",
+					"name" : "vt_gen",
+					"projectIndex" : 2
 				}
 			]
 		}

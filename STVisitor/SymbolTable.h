@@ -8,16 +8,15 @@
 #include <unordered_map>
 #include <stack>
 #include <string>
+#include <vector>
+#include <iostream>
 #include "llvm-17/llvm/IR/Value.h"
 
 enum class SymbolType {
     Variable,
     Program,
     FunctionBlock,
-    Function,
-    Input,
-    Output,
-    InOut
+    Function
 };
 
 struct SymbolEntry {
@@ -25,7 +24,47 @@ struct SymbolEntry {
     SymbolType type;
     std::string dataType;
     bool isGlobal;
-    llvm::Value* llvmValue; // LLVM值
+
+    std::vector<std::string> members; // 成员变量或方法, 用于FB
+
+    // 默认构造函数
+    SymbolEntry() : name(""), type(SymbolType::Variable), dataType(""), isGlobal(false) {}
+    // 构造函数
+    SymbolEntry(const std::string& name, SymbolType type, const std::string& dataType, bool isGlobal = false)
+            : name(name), type(type), dataType(dataType), isGlobal(isGlobal) {}
+
+    // 添加成员变量或方法
+    void addMember(const std::string& memberName) {
+        if (type != SymbolType::FunctionBlock) {
+            std::cerr << "Error: Only FunctionBlocks can have members!" << std::endl;
+            return;
+        }
+        members.push_back(memberName);
+    }
+
+    void printMember() const {
+        if (!members.empty()) {
+            std::cout << "  Members: " ;
+            for (const auto& member : members) {
+                std::cout << member << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+};
+
+class SymbolTable {
+private:
+    // 每个作用域是一个哈希表
+    std::vector<std::unordered_map<std::string, SymbolEntry>> scopes;
+
+public:
+    void enterScope();  // 进入新作用域
+    void exitScope();   // 退出当前作用域
+    void addSymbol(const std::string& name, SymbolType type, const std::string& dataType, bool isGlobal = false);
+    SymbolEntry* lookupSymbol(const std::string& name);
+    void addFunctionBlockMember(const std::string& fbName, const std::string& memberName);
+    void print() const;
 };
 
 #endif //ST_BUILDER_SYMBOLTABLE_H

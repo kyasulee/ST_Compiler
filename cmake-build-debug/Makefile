@@ -143,6 +143,97 @@ STGrammarLib/fast:
 .PHONY : STGrammarLib/fast
 
 #=============================================================================
+# Target rules for targets named intrinsics_gen
+
+# Build rule for target.
+intrinsics_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 intrinsics_gen
+.PHONY : intrinsics_gen
+
+# fast build rule for target.
+intrinsics_gen/fast:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/intrinsics_gen.dir/build.make STVisitor/CMakeFiles/intrinsics_gen.dir/build
+.PHONY : intrinsics_gen/fast
+
+#=============================================================================
+# Target rules for targets named vt_gen
+
+# Build rule for target.
+vt_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vt_gen
+.PHONY : vt_gen
+
+# fast build rule for target.
+vt_gen/fast:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/vt_gen.dir/build.make STVisitor/CMakeFiles/vt_gen.dir/build
+.PHONY : vt_gen/fast
+
+#=============================================================================
+# Target rules for targets named omp_gen
+
+# Build rule for target.
+omp_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 omp_gen
+.PHONY : omp_gen
+
+# fast build rule for target.
+omp_gen/fast:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/omp_gen.dir/build.make STVisitor/CMakeFiles/omp_gen.dir/build
+.PHONY : omp_gen/fast
+
+#=============================================================================
+# Target rules for targets named acc_gen
+
+# Build rule for target.
+acc_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 acc_gen
+.PHONY : acc_gen
+
+# fast build rule for target.
+acc_gen/fast:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/acc_gen.dir/build.make STVisitor/CMakeFiles/acc_gen.dir/build
+.PHONY : acc_gen/fast
+
+#=============================================================================
+# Target rules for targets named ARMTargetParserTableGen
+
+# Build rule for target.
+ARMTargetParserTableGen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ARMTargetParserTableGen
+.PHONY : ARMTargetParserTableGen
+
+# fast build rule for target.
+ARMTargetParserTableGen/fast:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/build
+.PHONY : ARMTargetParserTableGen/fast
+
+#=============================================================================
+# Target rules for targets named AArch64TargetParserTableGen
+
+# Build rule for target.
+AArch64TargetParserTableGen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AArch64TargetParserTableGen
+.PHONY : AArch64TargetParserTableGen
+
+# fast build rule for target.
+AArch64TargetParserTableGen/fast:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/build.make STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/build
+.PHONY : AArch64TargetParserTableGen/fast
+
+#=============================================================================
+# Target rules for targets named RISCVTargetParserTableGen
+
+# Build rule for target.
+RISCVTargetParserTableGen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 RISCVTargetParserTableGen
+.PHONY : RISCVTargetParserTableGen
+
+# fast build rule for target.
+RISCVTargetParserTableGen/fast:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/build
+.PHONY : RISCVTargetParserTableGen/fast
+
+#=============================================================================
 # Target rules for targets named STVisitorLib
 
 # Build rule for target.
@@ -187,6 +278,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... AArch64TargetParserTableGen"
+	@echo "... ARMTargetParserTableGen"
+	@echo "... RISCVTargetParserTableGen"
+	@echo "... acc_gen"
+	@echo "... intrinsics_gen"
+	@echo "... omp_gen"
+	@echo "... vt_gen"
 	@echo "... STGrammarLib"
 	@echo "... STVisitorLib"
 	@echo "... st_builder"

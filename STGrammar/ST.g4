@@ -56,6 +56,7 @@ program_list
 
 programDecl
     : PROGRAM IDENT  declarationStmt?  statement_list*  END_PROGRAM
+
     ;
 
 
@@ -221,7 +222,7 @@ varDeclarationBlock
     ;
 
 varDeclaration
-    :  IDENT ':' type (':=' NUMBER)? ';'
+    :  IDENT  type (':=' NUMBER)? ';'
     ;
 
 functionDecl

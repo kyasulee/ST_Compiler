@@ -386,4 +386,35 @@ CMakeFiles/st_builder.dir/main.cpp.o: \
  /root/codes/llvm/st_builder/STGrammar/STLexer.h \
  /root/codes/llvm/st_builder/STGrammar/STBaseVisitor.h \
  /root/codes/llvm/st_builder/STGrammar/STVisitor.h \
- /root/codes/llvm/st_builder/STVisitor/STParserVisitor.h
+ /root/codes/llvm/st_builder/STVisitor/STParserVisitor.h \
+ /root/codes/llvm/st_builder/STVisitor/SymbolTable.h \
+ /usr/include/llvm-17/llvm/IR/Value.h \
+ /usr/include/llvm-c-17/llvm-c/Types.h \
+ /usr/include/llvm-c-17/llvm-c/DataTypes.h /usr/include/inttypes.h \
+ /usr/include/llvm-c-17/llvm-c/ExternC.h \
+ /usr/include/llvm-17/llvm/ADT/STLExtras.h \
+ /usr/include/llvm-17/llvm/ADT/ADL.h \
+ /usr/include/llvm-17/llvm/ADT/Hashing.h \
+ /usr/include/llvm-17/llvm/Support/DataTypes.h \
+ /usr/include/llvm-17/llvm/Support/ErrorHandling.h \
+ /usr/include/llvm-17/llvm/Support/Compiler.h \
+ /usr/include/llvm-17/llvm/Config/llvm-config.h \
+ /usr/include/llvm-17/llvm/Support/SwapByteOrder.h \
+ /usr/include/llvm-17/llvm/ADT/bit.h \
+ /usr/include/llvm-17/llvm/Support/type_traits.h \
+ /usr/include/c++/13/optional \
+ /usr/include/llvm-17/llvm/ADT/STLForwardCompat.h \
+ /usr/include/llvm-17/llvm/ADT/STLFunctionalExtras.h \
+ /usr/include/llvm-17/llvm/ADT/identity.h \
+ /usr/include/llvm-17/llvm/ADT/iterator.h \
+ /usr/include/llvm-17/llvm/ADT/iterator_range.h \
+ /usr/include/llvm-17/llvm/Config/abi-breaking.h \
+ /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
+ /usr/include/llvm-17/llvm/ADT/StringRef.h \
+ /usr/include/llvm-17/llvm/ADT/DenseMapInfo.h \
+ /usr/include/llvm-17/llvm/IR/Use.h \
+ /usr/include/llvm-17/llvm/Support/CBindingWrapping.h \
+ /usr/include/llvm-17/llvm/Support/Casting.h \
+ /usr/include/llvm-17/llvm/Support/Alignment.h \
+ /usr/include/llvm-17/llvm/Support/MathExtras.h \
+ /usr/include/c++/13/climits /usr/include/llvm-17/llvm/IR/Value.def

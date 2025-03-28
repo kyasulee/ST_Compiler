@@ -106,6 +106,13 @@ STVisitor/preinstall:
 .PHONY : STVisitor/preinstall
 
 # Recursive "clean" directory target.
+STVisitor/clean: STVisitor/CMakeFiles/intrinsics_gen.dir/clean
+STVisitor/clean: STVisitor/CMakeFiles/vt_gen.dir/clean
+STVisitor/clean: STVisitor/CMakeFiles/omp_gen.dir/clean
+STVisitor/clean: STVisitor/CMakeFiles/acc_gen.dir/clean
+STVisitor/clean: STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/clean
+STVisitor/clean: STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/clean
+STVisitor/clean: STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/clean
 STVisitor/clean: STVisitor/CMakeFiles/STVisitorLib.dir/clean
 .PHONY : STVisitor/clean
 
@@ -161,6 +168,188 @@ STGrammarLib: STGrammar/CMakeFiles/STGrammarLib.dir/rule
 STGrammar/CMakeFiles/STGrammarLib.dir/clean:
 	$(MAKE) $(MAKESILENT) -f STGrammar/CMakeFiles/STGrammarLib.dir/build.make STGrammar/CMakeFiles/STGrammarLib.dir/clean
 .PHONY : STGrammar/CMakeFiles/STGrammarLib.dir/clean
+
+#=============================================================================
+# Target rules for target STVisitor/CMakeFiles/intrinsics_gen.dir
+
+# All Build rule for target.
+STVisitor/CMakeFiles/intrinsics_gen.dir/all:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/intrinsics_gen.dir/build.make STVisitor/CMakeFiles/intrinsics_gen.dir/depend
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/intrinsics_gen.dir/build.make STVisitor/CMakeFiles/intrinsics_gen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num= "Built target intrinsics_gen"
+.PHONY : STVisitor/CMakeFiles/intrinsics_gen.dir/all
+
+# Build rule for subdir invocation for target.
+STVisitor/CMakeFiles/intrinsics_gen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/intrinsics_gen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+.PHONY : STVisitor/CMakeFiles/intrinsics_gen.dir/rule
+
+# Convenience name for target.
+intrinsics_gen: STVisitor/CMakeFiles/intrinsics_gen.dir/rule
+.PHONY : intrinsics_gen
+
+# clean rule for target.
+STVisitor/CMakeFiles/intrinsics_gen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/intrinsics_gen.dir/build.make STVisitor/CMakeFiles/intrinsics_gen.dir/clean
+.PHONY : STVisitor/CMakeFiles/intrinsics_gen.dir/clean
+
+#=============================================================================
+# Target rules for target STVisitor/CMakeFiles/vt_gen.dir
+
+# All Build rule for target.
+STVisitor/CMakeFiles/vt_gen.dir/all:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/vt_gen.dir/build.make STVisitor/CMakeFiles/vt_gen.dir/depend
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/vt_gen.dir/build.make STVisitor/CMakeFiles/vt_gen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num= "Built target vt_gen"
+.PHONY : STVisitor/CMakeFiles/vt_gen.dir/all
+
+# Build rule for subdir invocation for target.
+STVisitor/CMakeFiles/vt_gen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/vt_gen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+.PHONY : STVisitor/CMakeFiles/vt_gen.dir/rule
+
+# Convenience name for target.
+vt_gen: STVisitor/CMakeFiles/vt_gen.dir/rule
+.PHONY : vt_gen
+
+# clean rule for target.
+STVisitor/CMakeFiles/vt_gen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/vt_gen.dir/build.make STVisitor/CMakeFiles/vt_gen.dir/clean
+.PHONY : STVisitor/CMakeFiles/vt_gen.dir/clean
+
+#=============================================================================
+# Target rules for target STVisitor/CMakeFiles/omp_gen.dir
+
+# All Build rule for target.
+STVisitor/CMakeFiles/omp_gen.dir/all:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/omp_gen.dir/build.make STVisitor/CMakeFiles/omp_gen.dir/depend
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/omp_gen.dir/build.make STVisitor/CMakeFiles/omp_gen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num= "Built target omp_gen"
+.PHONY : STVisitor/CMakeFiles/omp_gen.dir/all
+
+# Build rule for subdir invocation for target.
+STVisitor/CMakeFiles/omp_gen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/omp_gen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+.PHONY : STVisitor/CMakeFiles/omp_gen.dir/rule
+
+# Convenience name for target.
+omp_gen: STVisitor/CMakeFiles/omp_gen.dir/rule
+.PHONY : omp_gen
+
+# clean rule for target.
+STVisitor/CMakeFiles/omp_gen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/omp_gen.dir/build.make STVisitor/CMakeFiles/omp_gen.dir/clean
+.PHONY : STVisitor/CMakeFiles/omp_gen.dir/clean
+
+#=============================================================================
+# Target rules for target STVisitor/CMakeFiles/acc_gen.dir
+
+# All Build rule for target.
+STVisitor/CMakeFiles/acc_gen.dir/all:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/acc_gen.dir/build.make STVisitor/CMakeFiles/acc_gen.dir/depend
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/acc_gen.dir/build.make STVisitor/CMakeFiles/acc_gen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num= "Built target acc_gen"
+.PHONY : STVisitor/CMakeFiles/acc_gen.dir/all
+
+# Build rule for subdir invocation for target.
+STVisitor/CMakeFiles/acc_gen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/acc_gen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+.PHONY : STVisitor/CMakeFiles/acc_gen.dir/rule
+
+# Convenience name for target.
+acc_gen: STVisitor/CMakeFiles/acc_gen.dir/rule
+.PHONY : acc_gen
+
+# clean rule for target.
+STVisitor/CMakeFiles/acc_gen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/acc_gen.dir/build.make STVisitor/CMakeFiles/acc_gen.dir/clean
+.PHONY : STVisitor/CMakeFiles/acc_gen.dir/clean
+
+#=============================================================================
+# Target rules for target STVisitor/CMakeFiles/ARMTargetParserTableGen.dir
+
+# All Build rule for target.
+STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/all:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/depend
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num= "Built target ARMTargetParserTableGen"
+.PHONY : STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/all
+
+# Build rule for subdir invocation for target.
+STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+.PHONY : STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/rule
+
+# Convenience name for target.
+ARMTargetParserTableGen: STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/rule
+.PHONY : ARMTargetParserTableGen
+
+# clean rule for target.
+STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/clean
+.PHONY : STVisitor/CMakeFiles/ARMTargetParserTableGen.dir/clean
+
+#=============================================================================
+# Target rules for target STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir
+
+# All Build rule for target.
+STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/all:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/build.make STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/depend
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/build.make STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num= "Built target AArch64TargetParserTableGen"
+.PHONY : STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/all
+
+# Build rule for subdir invocation for target.
+STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+.PHONY : STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/rule
+
+# Convenience name for target.
+AArch64TargetParserTableGen: STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/rule
+.PHONY : AArch64TargetParserTableGen
+
+# clean rule for target.
+STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/build.make STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/clean
+.PHONY : STVisitor/CMakeFiles/AArch64TargetParserTableGen.dir/clean
+
+#=============================================================================
+# Target rules for target STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir
+
+# All Build rule for target.
+STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/all:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/depend
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num= "Built target RISCVTargetParserTableGen"
+.PHONY : STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/all
+
+# Build rule for subdir invocation for target.
+STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles 0
+.PHONY : STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/rule
+
+# Convenience name for target.
+RISCVTargetParserTableGen: STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/rule
+.PHONY : RISCVTargetParserTableGen
+
+# clean rule for target.
+STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/clean:
+	$(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/build.make STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/clean
+.PHONY : STVisitor/CMakeFiles/RISCVTargetParserTableGen.dir/clean
 
 #=============================================================================
 # Target rules for target STVisitor/CMakeFiles/STVisitorLib.dir

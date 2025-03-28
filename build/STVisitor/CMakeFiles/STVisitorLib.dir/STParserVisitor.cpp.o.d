@@ -364,4 +364,35 @@ STVisitor/CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.o: \
  /usr/local/include/tree/xpath/XPathWildcardAnywhereElement.h \
  /usr/local/include/tree/xpath/XPathWildcardElement.h \
  /root/codes/llvm/st_builder/STVisitor/../STGrammar/STVisitor.h \
- /root/codes/llvm/st_builder/STVisitor/../STGrammar/STParser.h
+ /root/codes/llvm/st_builder/STVisitor/../STGrammar/STParser.h \
+ /root/codes/llvm/st_builder/STVisitor/SymbolTable.h \
+ /usr/include/llvm-17/llvm/IR/Value.h \
+ /usr/lib/llvm-17/include/llvm-c/Types.h \
+ /usr/lib/llvm-17/include/llvm-c/DataTypes.h /usr/include/inttypes.h \
+ /usr/lib/llvm-17/include/llvm-c/ExternC.h \
+ /usr/lib/llvm-17/include/llvm/ADT/STLExtras.h \
+ /usr/lib/llvm-17/include/llvm/ADT/ADL.h \
+ /usr/lib/llvm-17/include/llvm/ADT/Hashing.h \
+ /usr/lib/llvm-17/include/llvm/Support/DataTypes.h \
+ /usr/lib/llvm-17/include/llvm/Support/ErrorHandling.h \
+ /usr/lib/llvm-17/include/llvm/Support/Compiler.h \
+ /usr/lib/llvm-17/include/llvm/Config/llvm-config.h \
+ /usr/lib/llvm-17/include/llvm/Support/SwapByteOrder.h \
+ /usr/lib/llvm-17/include/llvm/ADT/bit.h \
+ /usr/lib/llvm-17/include/llvm/Support/type_traits.h \
+ /usr/include/c++/13/optional \
+ /usr/lib/llvm-17/include/llvm/ADT/STLForwardCompat.h \
+ /usr/lib/llvm-17/include/llvm/ADT/STLFunctionalExtras.h \
+ /usr/lib/llvm-17/include/llvm/ADT/identity.h \
+ /usr/lib/llvm-17/include/llvm/ADT/iterator.h \
+ /usr/lib/llvm-17/include/llvm/ADT/iterator_range.h \
+ /usr/lib/llvm-17/include/llvm/Config/abi-breaking.h \
+ /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
+ /usr/lib/llvm-17/include/llvm/ADT/StringRef.h \
+ /usr/lib/llvm-17/include/llvm/ADT/DenseMapInfo.h \
+ /usr/lib/llvm-17/include/llvm/IR/Use.h \
+ /usr/lib/llvm-17/include/llvm/Support/CBindingWrapping.h \
+ /usr/lib/llvm-17/include/llvm/Support/Casting.h \
+ /usr/lib/llvm-17/include/llvm/Support/Alignment.h \
+ /usr/lib/llvm-17/include/llvm/Support/MathExtras.h \
+ /usr/include/c++/13/climits /usr/lib/llvm-17/include/llvm/IR/Value.def

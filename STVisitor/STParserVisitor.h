@@ -4,22 +4,15 @@
 
 #include "STBaseVisitor.h"
 #include "STParser.h"
+#include "SymbolTable.h"
 
 #include <string>
 #include <unordered_map>
 
-// 符号表类：保存变量声明和类型
-class SymbolTable {
-public:
-    void declareVariable(const std::string& name, const std::string& type); // 声明一个变量并记录其类型
-    bool isDeclared(const std::string&name) const; // 检查变量是否已被声明过
-    std::string getType(const std::string& name) const; // 获取变量类型
-
-private:
-    std::unordered_map<std::string, std::string> symbolTables; // 变量名-类型的map
-};
-
 class newSTVisitor : public STBaseVisitor {
+private:
+    SymbolTable symbolTable; // 符号表
+
 public:
     explicit newSTVisitor(); // 构造函数
 
@@ -95,8 +88,6 @@ public:
 
     antlrcpp::Any visitFunctionBlockDecl(STParser::FunctionBlockDeclContext *ctx) override;
 
-private:
-    SymbolTable symbolTable; // 符号表
 };
 
 #endif // ST_PARSER_VISITOR_H

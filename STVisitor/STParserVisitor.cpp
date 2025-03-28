@@ -5,24 +5,6 @@
 
 #include <iostream>
 
-// 声明一个变量并记录类型
-void SymbolTable::declareVariable(const std::string &name, const std::string &type) {
-    symbolTables[name] = type;
-    std::cout << "Declared Variable: " << name << " (" << type << ")" << std::endl;
-}
-
-// 检查变量是否已经声明
-bool SymbolTable::isDeclared(const std::string &name) const {
-    return symbolTables.find(name) != symbolTables.end();
-}
-
-// 获取变量类型，未定义时返回“”
-std::string SymbolTable::getType(const std::string &name) const {
-    if(isDeclared(name)) {
-        return symbolTables.at(name);
-    }
-    return "";
-}
 
 // 构造函数
 newSTVisitor::newSTVisitor() : symbolTable() {}
@@ -56,6 +38,7 @@ antlrcpp::Any newSTVisitor::visitProgram_list(STParser::Program_listContext *ctx
 }
 
 antlrcpp::Any newSTVisitor::visitProgramDecl(STParser::ProgramDeclContext *ctx) {
+    symbolTable.enterScope();  // 进入全局作用域
     // 程序名
     std::string progName = ctx->IDENT()->getText();
     std::cout << "Visiting Program Decl:" << progName << std::endl;
@@ -68,6 +51,9 @@ antlrcpp::Any newSTVisitor::visitProgramDecl(STParser::ProgramDeclContext *ctx) 
     for(auto stmt: ctx->statement_list()) {
         visit(stmt);
     }
+
+    symbolTable.exitScope();  // 退出全局作用域
+    symbolTable.print();      // 打印符号表
     return nullptr;
 }
 
@@ -168,6 +154,12 @@ antlrcpp::Any newSTVisitor::visitAssignStmt(STParser::AssignStmtContext *ctx) {
     if (ctx->prefixExpr()) {
         leftValue = ctx->prefixExpr()->getText();
         std::cout << "Left Value of AssignStmt is:" << leftValue << std::endl;
+
+        // 查找符号
+        SymbolEntry* entry = symbolTable.lookupSymbol(leftValue);
+        if (!entry) {
+            std::cerr << "Error: Undefined variable: " << leftValue << std::endl;
+        }
     }
 
     if (ctx->expr()) {
@@ -544,7 +536,10 @@ antlrcpp::Any newSTVisitor::visitVarDeclaration(STParser::VarDeclarationContext 
     std::string varName = ctx->IDENT()->getText();
     std::cout << "varName is:" << varName << std::endl;
 
+    std::string dataType = ctx->type()->getText();
     visit(ctx->type());
+
+    symbolTable.addSymbol(varName, SymbolType::Variable, dataType, true);
 
     if (ctx->NUMBER()) {
         std::string initialValue = ctx->NUMBER()->getText();
@@ -557,12 +552,16 @@ antlrcpp::Any newSTVisitor::visitVarDeclaration(STParser::VarDeclarationContext 
 }
 
 antlrcpp::Any newSTVisitor::visitFunctionDecl(STParser::FunctionDeclContext *ctx) {
+    symbolTable.enterScope();  // 进入函数作用域
     std::cout << "Visiting FunctionDecl" << std::endl;
 
     std::string functionName = ctx->IDENT()->getText();
     std::cout << "function name is:" << functionName << std::endl;
 
+    std::string returnType = ctx->type()->getText();
     visit(ctx->type());
+
+    symbolTable.addSymbol(functionName, SymbolType::Function, returnType, false);
 
     for (auto varBlock : ctx->varDeclarationBlock()) {
         visit(varBlock);
@@ -572,22 +571,33 @@ antlrcpp::Any newSTVisitor::visitFunctionDecl(STParser::FunctionDeclContext *ctx
         visit(stmt);
     }
 
+    symbolTable.exitScope();  // 退出函数作用域
     return nullptr;
 }
 
 antlrcpp::Any newSTVisitor::visitFunctionBlockDecl(STParser::FunctionBlockDeclContext *ctx) {
+    symbolTable.enterScope(); // 进入函数作用域
     std::cout << "Visiting FunctionBlockDecl" << std::endl;
 
     std::string functionBlockName = ctx->IDENT()->getText();
     std::cout << "function block name is:" << functionBlockName << std::endl;
 
+    symbolTable.addSymbol(functionBlockName, SymbolType::FunctionBlock, "FUNCTION_BLOCK", true);
+
     for (auto varBlock : ctx->varDeclarationBlock()) {
         visit(varBlock);
+    }
+
+    // 添加功能块成员
+    for (auto varDecl : ctx->varDeclarationBlock()) {
+        std::string memberName = varDecl->getText();
+        symbolTable.addFunctionBlockMember(functionBlockName, memberName);
     }
 
     for(auto stmt : ctx->statement_list()) {
         visit(stmt);
     }
 
+    symbolTable.exitScope();  // 退出功能块作用域
     return nullptr;
 }

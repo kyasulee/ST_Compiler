@@ -13,11 +13,17 @@
 			"add_executable",
 			"target_link_directories",
 			"target_link_libraries",
+			"set_target_properties",
+			"include",
+			"find_package",
 			"target_include_directories"
 		],
 		"files" : 
 		[
-			"CMakeLists.txt"
+			"CMakeLists.txt",
+			"STVisitor/CMakeLists.txt",
+			"/home/wjq/workspace/llvm/lib/cmake/llvm/LLVMExports.cmake",
+			"/home/wjq/workspace/llvm/lib/cmake/llvm/LLVMConfig.cmake"
 		],
 		"nodes" : 
 		[
@@ -55,7 +61,54 @@
 				"parent" : 0
 			},
 			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 36,
+				"parent" : 6
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 7,
+				"parent" : 6
+			},
+			{
+				"file" : 3,
+				"parent" : 8
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 251,
+				"parent" : 9
+			},
+			{
+				"file" : 2,
+				"parent" : 10
+			},
+			{
 				"command" : 3,
+				"file" : 2,
+				"line" : 95,
+				"parent" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 445,
+				"parent" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 64,
+				"parent" : 11
+			},
+			{
+				"command" : 6,
 				"file" : 0,
 				"line" : 18,
 				"parent" : 0
@@ -74,7 +127,7 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 6,
+					"backtrace" : 15,
 					"path" : "/usr/local/include/antlr4-runtime"
 				},
 				{
@@ -156,6 +209,66 @@
 			{
 				"backtrace" : 3,
 				"fragment" : "-lantlr4-runtime",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/wjq/workspace/llvm/lib/libLLVMCore.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/home/wjq/workspace/llvm/lib/libLLVMBinaryFormat.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/home/wjq/workspace/llvm/lib/libLLVMRemarks.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "/home/wjq/workspace/llvm/lib/libLLVMBitstreamReader.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/home/wjq/workspace/llvm/lib/libLLVMTargetParser.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "/home/wjq/workspace/llvm/lib/libLLVMSupport.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 12,
+				"fragment" : "/home/wjq/workspace/llvm/lib/libLLVMDemangle.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "-lrt",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libz.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libzstd.so",
 				"role" : "libraries"
 			}
 		],

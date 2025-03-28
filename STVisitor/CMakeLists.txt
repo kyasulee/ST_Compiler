@@ -4,9 +4,10 @@ project(STVisitor)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# 手动指定 LLVM 头文件和库路径
-#set(LLVM_INCLUDE_DIRS "/home/wjq/workspace/llvm/include")
-#set(LLVM_LIBRARY_DIRS "/home/wjq/workspace/llvm/lib")
+find_package(LLVM REQUIRED CONFIG)
+message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
+list(APPEND CMAKE_MODULE_PATH "${LLVM_CMAKE_DIR}")
+include(AddLLVM)
 
 # 添加头文件目录
 include_directories(${LLVM_INCLUDE_DIRS})
@@ -29,9 +30,11 @@ add_library(STVisitorLib STATIC ${SRC_FILES})
 target_include_directories(STVisitorLib PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
         ../STGrammar
+        /usr/include/llvm-c-17
+        /usr/include/llvm-17
 )
 
 # 链接 LLVM 库
-target_link_libraries(STVisitorLib PUBLIC ${LLVM_LIBRARIES})
+target_link_libraries(STVisitorLib PUBLIC ${LLVM_LIBRARIES} LLVMCore LLVMSupport)
 # 链接 STGrammarLib（在 STGrammar 目录的 CMakeLists.txt 里定义的库）
 target_link_libraries(STVisitorLib PUBLIC STGrammarLib)
