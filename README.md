@@ -1,4 +1,4 @@
-# LLVM-based IEC61131-3 ST language compiler
+# Antlr4 and LLVM based IEC61131-3 ST compiler
 
 Slowly implementing...
 
