@@ -5,6 +5,7 @@
 #include "STBaseVisitor.h"
 #include "STParser.h"
 #include "SymbolTable.h"
+#include "SemanticAnalyzer.h"
 
 #include <string>
 #include <unordered_map>
@@ -12,6 +13,7 @@
 class newSTVisitor : public STBaseVisitor {
 private:
     SymbolTable symbolTable; // 符号表
+    SemanticAnalyzer semanticAnalyzer;
 
 public:
     explicit newSTVisitor(); // 构造函数
@@ -21,6 +23,10 @@ public:
     antlrcpp::Any visitProgram_list(STParser::Program_listContext *ctx) override;
 
     antlrcpp::Any visitProgramDecl(STParser::ProgramDeclContext *ctx) override;
+
+    antlrcpp::Any visitInterfaceSection(STParser::InterfaceSectionContext *ctx) override;
+
+    antlrcpp::Any visitBodySection(STParser::BodySectionContext *ctx) override;
 
     antlrcpp::Any visitStatement_list(STParser::Statement_listContext *ctx) override;
 
@@ -70,7 +76,15 @@ public:
 
     antlrcpp::Any visitType(STParser::TypeContext *ctx) override;
 
+    antlrcpp::Any visitBasicType(STParser::BasicTypeContext *ctx) override;
+
+    antlrcpp::Any visitEnumeratedType(STParser::EnumeratedTypeContext *ctx) override;
+
+    antlrcpp::Any visitSubrangeType(STParser::SubrangeTypeContext *ctx) override;
+
     antlrcpp::Any visitFuncParams(STParser::FuncParamsContext *ctx) override;
+
+    antlrcpp::Any visitFuncParam(STParser::FuncParamContext *ctx) override;
 
     antlrcpp::Any visitArray(STParser::ArrayContext *ctx) override;
 
@@ -84,9 +98,19 @@ public:
 
     antlrcpp::Any visitVarDeclaration(STParser::VarDeclarationContext *ctx) override;
 
+    antlrcpp::Any visitArrayType(STParser::ArrayTypeContext *ctx) override;
+
+    antlrcpp::Any visitRange(STParser::RangeContext *ctx) override;
+
+    antlrcpp::Any visitStructType(STParser::StructTypeContext *ctx) override;
+
+    antlrcpp::Any visitStructMember(STParser::StructMemberContext *ctx) override;
+
     antlrcpp::Any visitFunctionDecl(STParser::FunctionDeclContext *ctx) override;
 
     antlrcpp::Any visitFunctionBlockDecl(STParser::FunctionBlockDeclContext *ctx) override;
+
+    antlrcpp::Any visitMethodDecl(STParser::MethodDeclContext *ctx) override;
 
 };
 

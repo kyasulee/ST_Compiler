@@ -2,12 +2,13 @@
 
 #include "STParserVisitor.h"
 #include "STParser.h"
+#include "SemanticAnalyzer.h"
 
 #include <iostream>
-
+#include <sstream>
 
 // 构造函数
-newSTVisitor::newSTVisitor() : symbolTable() {}
+newSTVisitor::newSTVisitor() : symbolTable(), semanticAnalyzer() {}
 
 antlrcpp::Any newSTVisitor::visitStartpoint(STParser::StartpointContext *ctx) {
     std::cout << "Visiting Startpoint:" <<  std::endl;
@@ -40,22 +41,35 @@ antlrcpp::Any newSTVisitor::visitProgram_list(STParser::Program_listContext *ctx
 antlrcpp::Any newSTVisitor::visitProgramDecl(STParser::ProgramDeclContext *ctx) {
     symbolTable.enterScope();  // 进入全局作用域
     // 程序名
-    std::string progName = ctx->IDENT()->getText();
-    std::cout << "Visiting Program Decl:" << progName << std::endl;
+    if (ctx->PROGRAM()) {
+        std::string progName = ctx->IDENT()->getText();
+        std::cout << "Visiting Program Decl:" << progName << std::endl;
 
-    symbolTable.addSymbol(progName, SymbolType::Program, "PROGRAM", true);
+        symbolTable.addSymbol(progName, SymbolType::Program, "PROGRAM", true);
 
-    // 变量声明
-    if(ctx->declarationStmt()) {
-        visit(ctx->declarationStmt());
-    }
+        // 变量声明
+        if (ctx->interfaceSection()) {
+            visit(ctx->interfaceSection());
+        }
 
-    for(auto stmt: ctx->statement_list()) {
-        visit(stmt);
+        // 程序段
+        if (ctx->bodySection()) {
+            visit(ctx->bodySection());
+        }
     }
 
     symbolTable.exitScope();  // 退出全局作用域
     symbolTable.print();      // 打印符号表
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitInterfaceSection(STParser::InterfaceSectionContext *ctx) {
+    std::cout << "Visiting InterfaceSection:" << std::endl;
+
+    for (auto stmt : ctx->varDeclarationBlock()) {
+        visit(stmt);
+    }
+
     return nullptr;
 }
 
@@ -123,6 +137,11 @@ antlrcpp::Any newSTVisitor::visitCallFuncStmt(STParser::CallFuncStmtContext *ctx
     }
     std::cout << "function name is:" << funcName << std::endl;
 
+    if (!semanticAnalyzer.checkFunctionCall(funcName) && !semanticAnalyzer.checkFunctionBlockMethodCall(funcName)) {
+        std::cerr << "Error: Variable '" << funcName << "' is not declared!" << std::endl;
+        return nullptr;
+    }
+
     if (ctx->funcParams()) {
         std::cout << "now visiting funcParams" << std::endl;
         visit(ctx->funcParams());
@@ -158,8 +177,7 @@ antlrcpp::Any newSTVisitor::visitAssignStmt(STParser::AssignStmtContext *ctx) {
         std::cout << "Left Value of AssignStmt is:" << leftValue << std::endl;
 
         // 查找符号
-        SymbolEntry* entry = symbolTable.lookupSymbol(leftValue);
-        if (!entry) {
+        if (!semanticAnalyzer.checkVariableUsage(leftValue)) {
             std::cerr << "Error: Undefined variable: " << leftValue << std::endl;
         }
     }
@@ -320,38 +338,50 @@ antlrcpp::Any newSTVisitor::visitPrimary(STParser::PrimaryContext *ctx) {
 antlrcpp::Any newSTVisitor::visitIfStmt(STParser::IfStmtContext *ctx) {
     std::cout  << "Visiting IfStmt:" << std::endl;
 
-    std::cout << "if condition is:" << ctx->expr()->getText() << std::endl;
-    visit(ctx->expr());
+    if (ctx->IF()) {
+        if (ctx->expr(0)) {
+            std::cout << "if condition is:" << ctx->expr(0)<< std::endl;
+            visit(ctx->expr(0));
+        }
 
-    std::cout << "then branch is:" << std::endl;
-    for (auto stmt : ctx->statement_list()) {
-        visit(stmt);
-    }
-
-    if (ctx->getText() == "ELSE") {
-        std::cout << "else branch is:" << std::endl;
+        std::cout << "then branch is:" << std::endl;
         for (auto stmt : ctx->statement_list()) {
             visit(stmt);
         }
+
+        for (auto i = 1; i <= ctx->ELSEIF().size(); i++) {
+            visit(ctx->expr(i));
+            visit(ctx->statement_list(i-1));
+        }
+
+        if (ctx->ELSE()) {
+            int stat_size = ctx->statement_list().size();
+            visit(ctx->statement_list(stat_size-1));
+        }
     }
+
     return nullptr;
 }
 
 antlrcpp::Any newSTVisitor::visitCaseStmt(STParser::CaseStmtContext *ctx) {
     std::cout  << "Visiting CaseStmt:" << std::endl;
 
-    std::cout << "Selector Expression:" << std::endl;
-    visit(ctx->expr());
+    if (ctx->CASE()) {
+        std::cout << "Selector Expression:" << std::endl;
+        visit(ctx->expr());
 
-    // 处理分支列表
-    std::cout << "Processing Case List:" << std::endl;
-    visit(ctx->caseList());
+        // 处理分支列表
+        if (ctx->OF()) {
+            std::cout << "Processing Case List:" << std::endl;
+            visit(ctx->caseList());
+        }
 
-    // 检查是否存在 ELSE 分支
-    if (ctx->getText() == "ELSE") {
-        std::cout << "else branch:" << std::endl;
-        for (auto stmt : ctx->statement_list()) {
-            visit(stmt);
+        // 检查是否存在 ELSE 分支
+        if (ctx->ELSE()) {
+            std::cout << "else branch:" << std::endl;
+            for (auto stmt: ctx->statement_list()) {
+                visit(stmt);
+            }
         }
     }
     return nullptr;
@@ -384,37 +414,42 @@ antlrcpp::Any newSTVisitor::visitCaseValues(STParser::CaseValuesContext *ctx) {
 antlrcpp::Any newSTVisitor::visitForStmt(STParser::ForStmtContext *ctx) {
     std::cout << "Visiting ForStmt:" << std::endl;
 
-    if (ctx->assignStmt()) {
-        visit(ctx->assignStmt());
-    }
-    if (ctx->expr(0)) {
-        visit(ctx->expr(0));
-    }
+    if (ctx->FOR()) {
+        if (ctx->assignStmt()) {
+            visit(ctx->assignStmt());
+        }
 
-    if (ctx->getText() == "BY") {
-        std::cout << "step value is:" << std::endl;
-        visit(ctx->expr(1));
-    } else  {
-        std::cout << "step value is default 1:" << std::endl;
-    }
+        if (ctx->expr(0)) {
+            visit(ctx->expr(0));
+        }
 
-    for(auto stmt : ctx->statement_list()) {
-        visit(stmt);
-    }
+        if (ctx->BY()) {
+            std::cout << "step value is:" << std::endl;
+            visit(ctx->expr(1));
+        } else {
+            std::cout << "step value is default 1:" << std::endl;
+        }
 
+        for (auto stmt: ctx->statement_list()) {
+            visit(stmt);
+        }
+
+    }
     return nullptr;
 }
 
 antlrcpp::Any newSTVisitor::visitWhileStmt(STParser::WhileStmtContext *ctx) {
     std::cout << "Visiting WhileStmt:" << std::endl;
 
-    if (ctx->expr()) {
-        std::cout << "while condition is" << std::endl;
-        visit(ctx->expr());
-    }
+    if (ctx->WHILE()) {
+        if (ctx->expr()) {
+            std::cout << "while condition is" << std::endl;
+            visit(ctx->expr());
+        }
 
-    for(auto stmt : ctx->statement_list()) {
-        visit(stmt);
+        for (auto stmt: ctx->statement_list()) {
+            visit(stmt);
+        }
     }
 
     return nullptr;
@@ -423,19 +458,35 @@ antlrcpp::Any newSTVisitor::visitWhileStmt(STParser::WhileStmtContext *ctx) {
 antlrcpp::Any newSTVisitor::visitRepeatStmt(STParser::RepeatStmtContext *ctx) {
     std::cout << "Visiting RepeatStmt" << std::endl;
 
-    for(auto stmt : ctx->statement_list()) {
-        visit(stmt);
-    }
+    if (ctx->REPEAT()) {
+        for (auto stmt: ctx->statement_list()) {
+            visit(stmt);
+        }
 
-    if (ctx->expr()) {
-        visit(ctx->expr());
+        if (ctx->expr()) {
+            visit(ctx->expr());
+        }
     }
 
     return nullptr;
 }
 
 antlrcpp::Any newSTVisitor::visitType(STParser::TypeContext *ctx) {
-    std::cout << "Visiting Type:" << ctx->getText() << std::endl;
+    if (ctx->basicType()) {
+        visit(ctx->basicType());
+    } else if (ctx->arrayType()) {
+        visit(ctx->arrayType());
+    } else if (ctx->structType()) {
+        visit(ctx->structType());
+    } else if (ctx->enumeratedType()) {
+        visit(ctx->enumeratedType());
+    } else if (ctx->subrangeType()) {
+        visit(ctx->subrangeType());
+    } else if (ctx->IDENT()) {
+        std::string userDefinedType = ctx->IDENT()->getText();
+
+        std::cout << "userDefinedType is " << userDefinedType << std::endl;
+    }
 
     return nullptr;
 }
@@ -443,39 +494,37 @@ antlrcpp::Any newSTVisitor::visitType(STParser::TypeContext *ctx) {
 antlrcpp::Any newSTVisitor::visitFuncParams(STParser::FuncParamsContext *ctx) {
     std::cout << "Visiting FuncParams:" << std::endl;
 
-    for (size_t i = 0; i < ctx->children.size(); i++) {
-        auto child = ctx->children[i];
-
-        if (auto identCtx = dynamic_cast<STParser::IdentContext*>(child)) {
-            std::string paramName = identCtx->getText();
-            std::cout << "paramName is:" << paramName << std::endl;
-
-            if (i + 1 < ctx->children.size()) {
-                auto nextChild = ctx->children[i + 1];
-                if (nextChild->getText() == ":=") {
-                    std::cout << ":=";
-                    visit(ctx->expr(i / 2));
-                    ++i;
-                } else if (nextChild->getText() == "=>") {
-                    std::cout << "=>";
-                    if (i + 2 < ctx->children.size()) {
-                        auto mappedIdent = ctx->children[i + 2];
-                        std::cout << mappedIdent->getText();
-                        i += 2;
-                    } else {
-                        std::cout << "no value provided" << std::endl;
-                    }
-                } else {
-                    std::cout << "no value provided" << std::endl;
-                }
-            } else if (auto exprCtx = dynamic_cast<STParser::ExprContext*>(child)){
-                std::cout << "Expression Parameter: ";
-                visit(exprCtx);  // 访问表达式
-                std::cout << std::endl;
-            }
-        }
+    for (auto paramCtx : ctx->funcParam()) {
+        visit(paramCtx);
     }
+
     return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitFuncParam(STParser::FuncParamContext *ctx) {
+    if (ctx->ARROW()) {
+        // 输出引脚
+        std::string outputPin = ctx->IDENT()->getText();
+        std::string mappedValue = ctx->ident()->getText();
+
+        if (!semanticAnalyzer.checkVariableUsage(mappedValue)) {
+            std::cerr << "Error: Undefined variable " << mappedValue << std::endl;
+            return nullptr;
+        }
+    } else if (ctx->ASSIGN()) {
+        // 输入引脚
+        std::string inputPin = ctx->IDENT()->getText();
+
+
+        visit(ctx->expr());
+        if (!semanticAnalyzer.checkVariableUsage(ctx->expr()->getText())) {
+            std::cerr << "Error: Undefined variable " << ctx->expr()->getText() << std::endl;
+            return nullptr;
+        }
+        visit(ctx->expr());
+    } else {
+        visit(ctx->expr());
+    }
 }
 
 antlrcpp::Any newSTVisitor::visitIdenti(STParser::IdentiContext *ctx) {
@@ -536,19 +585,80 @@ antlrcpp::Any newSTVisitor::visitVarDeclaration(STParser::VarDeclarationContext 
     std::cout << "Visiting VarDeclaration" << std::endl;
 
     std::string varName = ctx->IDENT()->getText();
-    std::cout << "varName is:" << varName << std::endl;
 
-    std::string dataType = ctx->type()->getText();
-    visit(ctx->type());
+    std::string dataType;
+    if (ctx->type()) {
+        visit(ctx->type());
+        dataType = ctx->type()->getText(); // 基本类型
+    } else if (ctx->arrayType()) {
+        dataType = "ARRAY";
+        visit(ctx->arrayType());
+    } else if (ctx->structType()) {
+        dataType = "STRUCT";
+        visit(ctx->structType());
+    }
 
-    symbolTable.addSymbol(varName, SymbolType::Variable, dataType, true);
+    if (!semanticAnalyzer.declareVariable(varName, dataType)) {
+        std::cerr << "Error: Variable '" << varName << "' is already declared in this scope!" << std::endl;
+        return nullptr;
+    }
 
-    if (ctx->NUMBER()) {
-        std::string initialValue = ctx->NUMBER()->getText();
+    if (ctx->expr()) {
+        std::string initialValue = ctx->expr()->getText();
         std::cout << "initialValue is:" << initialValue << std::endl;
+        visit(ctx->expr());
+        // TODO 初始值校验
     } else {
         std::cout << "No initialValue"<< std::endl;
     }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitBasicType(STParser::BasicTypeContext *ctx) {
+    std::string typeName = ctx->getText();
+    std::cout << "typeName is: " << typeName << std::endl;
+
+    return typeName;
+}
+
+antlrcpp::Any newSTVisitor::visitArrayType(STParser::ArrayTypeContext *ctx) {
+    std::cout << "Visiting ArrayType:" << std::endl;
+
+    for (auto rangeCtx : ctx->range()) {
+        visit(rangeCtx);
+    }
+
+    visit(ctx->type());
+    std::string elementType = ctx->type()->getText();
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitRange(STParser::RangeContext *ctx) {
+    std::string upperRange = ctx->expr(1)->getText();
+    std::string lowerRange = ctx->expr(0)->getText();
+
+    std::cout << lowerRange << ".." << upperRange << std::endl;
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitStructType(STParser::StructTypeContext *ctx) {
+    std::cout << "Visiting structType:" << std::endl;
+
+    for (auto memberCtx : ctx->structMember()) {
+        visit(memberCtx);
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitStructMember(STParser::StructMemberContext *ctx) {
+    std::string memberName = ctx->IDENT()->getText();
+
+    visit(ctx->type());
+    std::string memberType = ctx->type()->getText();
 
     return nullptr;
 }
@@ -563,21 +673,20 @@ antlrcpp::Any newSTVisitor::visitFunctionDecl(STParser::FunctionDeclContext *ctx
     std::string returnType = ctx->type()->getText();
     visit(ctx->type());
 
-    symbolTable.addSymbol(functionName, SymbolType::Function, returnType, false);
-
-    for (auto varBlock : ctx->varDeclarationBlock()) {
-        visit(varBlock);
+    if (!semanticAnalyzer.declareFunction(functionName, returnType)) {
+        std::cerr << "Error: Function '" << functionName << "' is already declared!" << std::endl;
+        return nullptr;
     }
 
-    for (auto stmt : ctx->statement_list()) {
-        visit(stmt);
+    symbolTable.addSymbol(functionName, SymbolType::Function, returnType, true);
+
+    if (ctx->interfaceSection()) {
+        visit(ctx->interfaceSection());
     }
 
-    // 添加功能块成员
-    for (auto varDecl : ctx->varDeclarationBlock()) {
-        std::string memberName = varDecl->getText();
-        symbolTable.addFunctionMember(functionName, memberName);
-    }
+   if (ctx->bodySection()) {
+       visit(ctx->bodySection());
+   }
 
     symbolTable.exitScope();  // 退出函数作用域
     return nullptr;
@@ -590,22 +699,77 @@ antlrcpp::Any newSTVisitor::visitFunctionBlockDecl(STParser::FunctionBlockDeclCo
     std::string functionBlockName = ctx->IDENT()->getText();
     std::cout << "function block name is:" << functionBlockName << std::endl;
 
-    symbolTable.addSymbol(functionBlockName, SymbolType::FunctionBlock, "FUNCTION_BLOCK", true);
+    if (!semanticAnalyzer.declareFunctionBlock(functionBlockName)) {
+        std::cerr << "Error: Function Block '" << functionBlockName << "' is already declared!" << std::endl;
+        return nullptr;
+    }
+    std::cout << "添加fu定义" << std::endl;
+    symbolTable.addSymbol(functionBlockName, SymbolType::FunctionBlock, "", true);
 
-    for (auto varBlock : ctx->varDeclarationBlock()) {
-        visit(varBlock);
+    if (ctx->interfaceSection()) {
+        visit(ctx->interfaceSection());
     }
 
-    // 添加功能块成员
-    for (auto varDecl : ctx->varDeclarationBlock()) {
-        std::string memberName = varDecl->getText();
-        symbolTable.addFunctionBlockMember(functionBlockName, memberName);
-    }
-
-    for(auto stmt : ctx->statement_list()) {
-        visit(stmt);
+    if (ctx->bodySection()) {
+        visit(ctx->bodySection());
     }
 
     symbolTable.exitScope();  // 退出功能块作用域
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitMethodDecl(STParser::MethodDeclContext *ctx) {
+    std::string methodName;
+    if (ctx->METHOD()) {
+         methodName = ctx->METHOD()->getText();
+    }
+
+    // 返回类型
+    visit(ctx->type());
+
+    // 进入作用域
+    semanticAnalyzer.enterScope();
+    if (!semanticAnalyzer.declareFunction(methodName, ctx->type()->getText())){
+        std::cerr << "Error: Failed to declare method " <<  methodName <<  "." << std::endl;
+    }
+
+    if (ctx->interfaceSection()) {
+        visit(ctx->interfaceSection());
+    }
+
+    visit(ctx->bodySection());
+
+    semanticAnalyzer.exitScope();
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitBodySection(STParser::BodySectionContext *ctx) {
+    for (auto stmt : ctx->statement_list()) {
+        visit(stmt);
+    }
+
+    return nullptr;
+}
+
+antlrcpp::Any newSTVisitor::visitEnumeratedType(STParser::EnumeratedTypeContext *ctx) {
+    std::cout << "  Enumerated Values: ";
+    for (auto ident : ctx->IDENT()) {
+        std::cout << ident->getText() << " ";
+    }
+    std::cout << std::endl;
+
+    return nullptr;
+}
+
+
+antlrcpp::Any newSTVisitor::visitSubrangeType(STParser::SubrangeTypeContext *ctx) {
+    std::cout << "  Base Type: ";
+    visit(ctx->basicType());
+
+    std::cout << "  Range: "
+              << ctx->expr(0)->getText() << " .. "
+              << ctx->expr(1)->getText() << std::endl;
+
     return nullptr;
 }

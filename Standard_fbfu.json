@@ -1,0 +1,220 @@
+{
+  "Function": [
+    {
+      "name": "ADD",
+      "description": "Addition of two values.",
+      "parameters": [
+        { "name": "IN1", "type": "ANY_NUM" },
+        { "name": "IN2", "type": "ANY_NUM" }
+      ],
+      "return_type": "ANY_NUM"
+    },
+    {
+      "name": "SUB",
+      "description": "Subtraction of two values.",
+      "parameters": [
+        { "name": "IN1", "type": "ANY_NUM" },
+        { "name": "IN2", "type": "ANY_NUM" }
+      ],
+      "return_type": "ANY_NUM"
+    },
+    {
+      "name": "MUL",
+      "description": "Multiplication of two values.",
+      "parameters": [
+        { "name": "IN1", "type": "ANY_NUM" },
+        { "name": "IN2", "type": "ANY_NUM" }
+      ],
+      "return_type": "ANY_NUM"
+    },
+    {
+      "name": "DIV",
+      "description": "Division of two values.",
+      "parameters": [
+        { "name": "IN1", "type": "ANY_NUM" },
+        { "name": "IN2", "type": "ANY_NUM" }
+      ],
+      "return_type": "ANY_NUM"
+    },
+    {
+      "name": "MOD",
+      "description": "Modulo operation (remainder of division).",
+      "parameters": [
+        { "name": "IN1", "type": "ANY_INT" },
+        { "name": "IN2", "type": "ANY_INT" }
+      ],
+      "return_type": "ANY_INT"
+    },
+    {
+      "name": "ABS",
+      "description": "Absolute value of a number.",
+      "parameters": [
+        { "name": "IN", "type": "ANY_NUM" }
+      ],
+      "return_type": "ANY_NUM"
+    },
+    {
+      "name": "SQRT",
+      "description": "Square root of a number.",
+      "parameters": [
+        { "name": "IN", "type": "REAL" }
+      ],
+      "return_type": "REAL"
+    },
+    {
+      "name": "SIN",
+      "description": "Sine of an angle (in radians).",
+      "parameters": [
+        { "name": "IN", "type": "REAL" }
+      ],
+      "return_type": "REAL"
+    },
+    {
+      "name": "COS",
+      "description": "Cosine of an angle (in radians).",
+      "parameters": [
+        { "name": "IN", "type": "REAL" }
+      ],
+      "return_type": "REAL"
+    },
+    {
+      "name": "TAN",
+      "description": "Tangent of an angle (in radians).",
+      "parameters": [
+        { "name": "IN", "type": "REAL" }
+      ],
+      "return_type": "REAL"
+    },
+    {
+      "name": "EXP",
+      "description": "Exponential function (e^x).",
+      "parameters": [
+        { "name": "IN", "type": "REAL" }
+      ],
+      "return_type": "REAL"
+    },
+    {
+      "name": "LN",
+      "description": "Natural logarithm (log base e).",
+      "parameters": [
+        { "name": "IN", "type": "REAL" }
+      ],
+      "return_type": "REAL"
+    },
+    {
+      "name": "LOG",
+      "description": "Logarithm (log base 10).",
+      "parameters": [
+        { "name": "IN", "type": "REAL" }
+      ],
+      "return_type": "REAL"
+    },
+    {
+      "name": "AND",
+      "description": "Logical AND operation.",
+      "parameters": [
+        { "name": "IN1", "type": "BOOL" },
+        { "name": "IN2", "type": "BOOL" }
+      ],
+      "return_type": "BOOL"
+    },
+    {
+      "name": "OR",
+      "description": "Logical OR operation.",
+      "parameters": [
+        { "name": "IN1", "type": "BOOL" },
+        { "name": "IN2", "type": "BOOL" }
+      ],
+      "return_type": "BOOL"
+    },
+    {
+      "name": "NOT",
+      "description": "Logical NOT operation.",
+      "parameters": [
+        { "name": "IN", "type": "BOOL" }
+      ],
+      "return_type": "BOOL"
+    },
+    {
+      "name": "XOR",
+      "description": "Logical XOR operation.",
+      "parameters": [
+        { "name": "IN1", "type": "BOOL" },
+        { "name": "IN2", "type": "BOOL" }
+      ],
+      "return_type": "BOOL"
+    }
+  ],
+  "FunctionBlock": [
+    {
+      "name": "CTU",
+      "description": "Count Up Counter.",
+      "parameters": [
+        { "name": "CU", "type": "BOOL" },
+        { "name": "R", "type": "BOOL" },
+        { "name": "PV", "type": "INT" },
+        { "name": "Q", "type": "BOOL" },
+        { "name": "CV", "type": "INT" }
+      ]
+    },
+    {
+      "name": "CTD",
+      "description": "Count Down Counter.",
+      "parameters": [
+        { "name": "CD", "type": "BOOL" },
+        { "name": "LD", "type": "BOOL" },
+        { "name": "PV", "type": "INT" },
+        { "name": "Q", "type": "BOOL" },
+        { "name": "CV", "type": "INT" }
+      ]
+    },
+    {
+      "name": "TON",
+      "description": "Timer On Delay.",
+      "parameters": [
+        { "name": "IN", "type": "BOOL" },
+        { "name": "PT", "type": "TIME" },
+        { "name": "Q", "type": "BOOL" },
+        { "name": "ET", "type": "TIME" }
+      ]
+    },
+    {
+      "name": "TOF",
+      "description": "Timer Off Delay.",
+      "parameters": [
+        { "name": "IN", "type": "BOOL" },
+        { "name": "PT", "type": "TIME" },
+        { "name": "Q", "type": "BOOL" },
+        { "name": "ET", "type": "TIME" }
+      ]
+    },
+    {
+      "name": "TP",
+      "description": "Pulse Timer.",
+      "parameters": [
+        { "name": "IN", "type": "BOOL" },
+        { "name": "PT", "type": "TIME" },
+        { "name": "Q", "type": "BOOL" },
+        { "name": "ET", "type": "TIME" }
+      ]
+    },
+    {
+      "name": "SR",
+      "description": "Set-Reset Flip-Flop.",
+      "parameters": [
+        { "name": "S1", "type": "BOOL" },
+        { "name": "R", "type": "BOOL" },
+        { "name": "Q1", "type": "BOOL" }
+      ]
+    },
+    {
+      "name": "RS",
+      "description": "Reset-Set Flip-Flop.",
+      "parameters": [
+        { "name": "S", "type": "BOOL" },
+        { "name": "R1", "type": "BOOL" },
+        { "name": "Q1", "type": "BOOL" }
+      ]
+    }
+  ]
+}

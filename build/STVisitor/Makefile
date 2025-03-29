@@ -210,6 +210,30 @@ STParserVisitor.cpp.s:
 	cd /root/codes/llvm/st_builder/build && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.s
 .PHONY : STParserVisitor.cpp.s
 
+SemanticAnalyzer.o: SemanticAnalyzer.cpp.o
+.PHONY : SemanticAnalyzer.o
+
+# target to build an object file
+SemanticAnalyzer.cpp.o:
+	cd /root/codes/llvm/st_builder/build && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.o
+.PHONY : SemanticAnalyzer.cpp.o
+
+SemanticAnalyzer.i: SemanticAnalyzer.cpp.i
+.PHONY : SemanticAnalyzer.i
+
+# target to preprocess a source file
+SemanticAnalyzer.cpp.i:
+	cd /root/codes/llvm/st_builder/build && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.i
+.PHONY : SemanticAnalyzer.cpp.i
+
+SemanticAnalyzer.s: SemanticAnalyzer.cpp.s
+.PHONY : SemanticAnalyzer.s
+
+# target to generate assembly for a file
+SemanticAnalyzer.cpp.s:
+	cd /root/codes/llvm/st_builder/build && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.s
+.PHONY : SemanticAnalyzer.cpp.s
+
 SymbolTable.o: SymbolTable.cpp.o
 .PHONY : SymbolTable.o
 
@@ -250,6 +274,9 @@ help:
 	@echo "... STParserVisitor.o"
 	@echo "... STParserVisitor.i"
 	@echo "... STParserVisitor.s"
+	@echo "... SemanticAnalyzer.o"
+	@echo "... SemanticAnalyzer.i"
+	@echo "... SemanticAnalyzer.s"
 	@echo "... SymbolTable.o"
 	@echo "... SymbolTable.i"
 	@echo "... SymbolTable.s"

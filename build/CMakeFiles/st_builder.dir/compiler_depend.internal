@@ -8,6 +8,7 @@ CMakeFiles/st_builder.dir/main.cpp.o
  /root/codes/llvm/st_builder/STGrammar/STParser.h
  /root/codes/llvm/st_builder/STGrammar/STVisitor.h
  /root/codes/llvm/st_builder/STVisitor/STParserVisitor.h
+ /root/codes/llvm/st_builder/STVisitor/SemanticAnalyzer.h
  /root/codes/llvm/st_builder/STVisitor/SymbolTable.h
  /usr/include/alloca.h
  /usr/include/asm-generic/errno-base.h

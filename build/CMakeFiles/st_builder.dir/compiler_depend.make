@@ -7,6 +7,7 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
   /root/codes/llvm/st_builder/STGrammar/STParser.h \
   /root/codes/llvm/st_builder/STGrammar/STVisitor.h \
   /root/codes/llvm/st_builder/STVisitor/STParserVisitor.h \
+  /root/codes/llvm/st_builder/STVisitor/SemanticAnalyzer.h \
   /root/codes/llvm/st_builder/STVisitor/SymbolTable.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
@@ -623,8 +624,6 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/local/include/antlr4-runtime/TokenFactory.h:
 
-/usr/local/include/antlr4-runtime/RuntimeMetaData.h:
-
 /usr/local/include/antlr4-runtime/RuleContextWithAltNum.h:
 
 /usr/local/include/antlr4-runtime/Recognizer.h:
@@ -781,7 +780,11 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
-/usr/include/c++/13/clocale:
+/usr/local/include/antlr4-runtime/tree/xpath/XPathRuleAnywhereElement.h:
+
+/usr/local/include/antlr4-runtime/atn/LexerPushModeAction.h:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
 
 /usr/include/c++/13/cctype:
 
@@ -829,6 +832,10 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/c++/13/locale:
 
+/usr/local/include/antlr4-runtime/RuntimeMetaData.h:
+
+/root/codes/llvm/st_builder/STVisitor/SemanticAnalyzer.h:
+
 /usr/include/c++/13/cerrno:
 
 /root/codes/llvm/st_builder/STGrammar/STVisitor.h:
@@ -865,13 +872,13 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/c++/13/cstddef:
 
+/usr/include/c++/13/bits/postypes.h:
+
 /usr/include/c++/13/bits/uses_allocator.h:
 
 /usr/local/include/antlr4-runtime/Exceptions.h:
 
 /usr/include/c++/13/bits/stl_multiset.h:
-
-/usr/include/c++/13/bits/postypes.h:
 
 /usr/local/include/antlr4-runtime/RuleContext.h:
 
@@ -929,6 +936,14 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/time.h:
 
+/usr/include/c++/13/bits/locale_facets_nonio.tcc:
+
+/usr/local/include/antlr4-runtime/NoViableAltException.h:
+
+/usr/include/c++/13/bits/stl_heap.h:
+
+/usr/include/c++/13/utility:
+
 /usr/local/include/antlr4-runtime/atn/BasicState.h:
 
 /usr/include/c++/13/bits/atomic_lockfree_defines.h:
@@ -948,6 +963,8 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 /usr/include/c++/13/backward/binders.h:
 
 /usr/include/llvm-17/llvm/Support/Compiler.h:
+
+/usr/include/c++/13/clocale:
 
 /usr/include/c++/13/bits/basic_ios.tcc:
 
@@ -1194,14 +1211,6 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 /usr/include/c++/13/bits/locale_classes.tcc:
 
 /usr/include/c++/13/bits/locale_facets_nonio.h:
-
-/usr/include/c++/13/bits/locale_facets_nonio.tcc:
-
-/usr/local/include/antlr4-runtime/NoViableAltException.h:
-
-/usr/include/c++/13/bits/stl_heap.h:
-
-/usr/include/c++/13/utility:
 
 /usr/include/c++/13/codecvt:
 
@@ -1460,9 +1469,3 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/local/include/antlr4-runtime/tree/xpath/XPathRuleAnywhereElement.h:
-
-/usr/local/include/antlr4-runtime/atn/LexerPushModeAction.h:
-
-/usr/include/x86_64-linux-gnu/bits/sched.h:

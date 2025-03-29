@@ -17,10 +17,12 @@ link_directories(${LLVM_LIBRARY_DIRS})
 
 # 设置源文件
 set(SRC_FILES
-        STParserVisitor.cpp
         STParserVisitor.h
+        STParserVisitor.cpp
         SymbolTable.h
         SymbolTable.cpp
+        SemanticAnalyzer.h
+        SemanticAnalyzer.cpp
 )
 
 # 添加可执行文件或静态库
@@ -30,6 +32,7 @@ add_library(STVisitorLib STATIC ${SRC_FILES})
 target_include_directories(STVisitorLib PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}
         ../STGrammar
+        ../include
         /usr/include/llvm-c-17
         /usr/include/llvm-17
 )

@@ -49,6 +49,9 @@ END_CASE: 'END_CASE';
 METHOD: 'METHOD';
 END_METHOD: 'END_METHOD';
 
+ASSIGN: ':=';
+ARROW: '=>';
+
 startpoint: program_list* EOF;
 
 program_list
@@ -234,8 +237,8 @@ funcParams
     ;
 
 funcParam
-    : IDENT ':=' expr
-    | IDENT '=>' ident
+    : IDENT ASSIGN expr
+    | IDENT ARROW ident
     | expr
     ;
 
