@@ -17,16 +17,17 @@ public:
     T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, T__18 = 19, T__19 = 20, 
     T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24, T__24 = 25, T__25 = 26, 
     T__26 = 27, T__27 = 28, T__28 = 29, T__29 = 30, T__30 = 31, T__31 = 32, 
-    T__32 = 33, T__33 = 34, T__34 = 35, T__35 = 36, VAR = 37, VAR_INPUT = 38, 
-    VAR_OUTPUT = 39, VAR_IN_OUT = 40, VAR_TEMP = 41, END_VAR = 42, FUNCTION = 43, 
-    END_FUNCTION = 44, FUNCTION_BLOCK = 45, END_FUNCTION_BLOCK = 46, INT = 47, 
-    SINT = 48, DINT = 49, LINT = 50, USINT = 51, UINT = 52, UDINT = 53, 
-    ULINT = 54, REAL = 55, LREAL = 56, BOOL = 57, BYTE = 58, WORD = 59, 
-    DWORD = 60, LWORD = 61, FOR = 62, TO = 63, BY = 64, END_FOR = 65, WHILE = 66, 
-    DO = 67, END_WHILE = 68, REPEAT = 69, UNTIL = 70, END_REPEAT = 71, PROGRAM = 72, 
-    END_PROGRAM = 73, IF = 74, THEN = 75, ELSE = 76, END_IF = 77, CASE = 78, 
-    OF = 79, END_CASE = 80, NUMBER = 81, IDENT = 82, WS = 83, COMMENT_LINE = 84, 
-    COMMENT_PARA = 85
+    T__32 = 33, T__33 = 34, T__34 = 35, T__35 = 36, T__36 = 37, T__37 = 38, 
+    T__38 = 39, T__39 = 40, T__40 = 41, VAR = 42, VAR_INPUT = 43, VAR_OUTPUT = 44, 
+    VAR_IN_OUT = 45, VAR_TEMP = 46, END_VAR = 47, FUNCTION = 48, END_FUNCTION = 49, 
+    FUNCTION_BLOCK = 50, END_FUNCTION_BLOCK = 51, INT = 52, SINT = 53, DINT = 54, 
+    LINT = 55, USINT = 56, UINT = 57, UDINT = 58, ULINT = 59, REAL = 60, 
+    LREAL = 61, BOOL = 62, BYTE = 63, WORD = 64, DWORD = 65, LWORD = 66, 
+    FOR = 67, TO = 68, BY = 69, END_FOR = 70, WHILE = 71, DO = 72, END_WHILE = 73, 
+    REPEAT = 74, UNTIL = 75, END_REPEAT = 76, PROGRAM = 77, END_PROGRAM = 78, 
+    IF = 79, ELSEIF = 80, THEN = 81, ELSE = 82, END_IF = 83, CASE = 84, 
+    OF = 85, END_CASE = 86, METHOD = 87, END_METHOD = 88, NUMBER = 89, IDENT = 90, 
+    WS = 91, COMMENT_LINE = 92, COMMENT_PARA = 93, STRING_LITERAL = 94
   };
 
   explicit STLexer(antlr4::CharStream *input);

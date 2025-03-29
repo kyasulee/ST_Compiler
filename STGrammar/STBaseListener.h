@@ -25,6 +25,12 @@ public:
   virtual void enterProgramDecl(STParser::ProgramDeclContext * /*ctx*/) override { }
   virtual void exitProgramDecl(STParser::ProgramDeclContext * /*ctx*/) override { }
 
+  virtual void enterInterfaceSection(STParser::InterfaceSectionContext * /*ctx*/) override { }
+  virtual void exitInterfaceSection(STParser::InterfaceSectionContext * /*ctx*/) override { }
+
+  virtual void enterBodySection(STParser::BodySectionContext * /*ctx*/) override { }
+  virtual void exitBodySection(STParser::BodySectionContext * /*ctx*/) override { }
+
   virtual void enterStatement_list(STParser::Statement_listContext * /*ctx*/) override { }
   virtual void exitStatement_list(STParser::Statement_listContext * /*ctx*/) override { }
 
@@ -97,8 +103,20 @@ public:
   virtual void enterType(STParser::TypeContext * /*ctx*/) override { }
   virtual void exitType(STParser::TypeContext * /*ctx*/) override { }
 
+  virtual void enterBasicType(STParser::BasicTypeContext * /*ctx*/) override { }
+  virtual void exitBasicType(STParser::BasicTypeContext * /*ctx*/) override { }
+
+  virtual void enterEnumeratedType(STParser::EnumeratedTypeContext * /*ctx*/) override { }
+  virtual void exitEnumeratedType(STParser::EnumeratedTypeContext * /*ctx*/) override { }
+
+  virtual void enterSubrangeType(STParser::SubrangeTypeContext * /*ctx*/) override { }
+  virtual void exitSubrangeType(STParser::SubrangeTypeContext * /*ctx*/) override { }
+
   virtual void enterFuncParams(STParser::FuncParamsContext * /*ctx*/) override { }
   virtual void exitFuncParams(STParser::FuncParamsContext * /*ctx*/) override { }
+
+  virtual void enterFuncParam(STParser::FuncParamContext * /*ctx*/) override { }
+  virtual void exitFuncParam(STParser::FuncParamContext * /*ctx*/) override { }
 
   virtual void enterArray(STParser::ArrayContext * /*ctx*/) override { }
   virtual void exitArray(STParser::ArrayContext * /*ctx*/) override { }
@@ -118,11 +136,26 @@ public:
   virtual void enterVarDeclaration(STParser::VarDeclarationContext * /*ctx*/) override { }
   virtual void exitVarDeclaration(STParser::VarDeclarationContext * /*ctx*/) override { }
 
+  virtual void enterArrayType(STParser::ArrayTypeContext * /*ctx*/) override { }
+  virtual void exitArrayType(STParser::ArrayTypeContext * /*ctx*/) override { }
+
+  virtual void enterRange(STParser::RangeContext * /*ctx*/) override { }
+  virtual void exitRange(STParser::RangeContext * /*ctx*/) override { }
+
+  virtual void enterStructType(STParser::StructTypeContext * /*ctx*/) override { }
+  virtual void exitStructType(STParser::StructTypeContext * /*ctx*/) override { }
+
+  virtual void enterStructMember(STParser::StructMemberContext * /*ctx*/) override { }
+  virtual void exitStructMember(STParser::StructMemberContext * /*ctx*/) override { }
+
   virtual void enterFunctionDecl(STParser::FunctionDeclContext * /*ctx*/) override { }
   virtual void exitFunctionDecl(STParser::FunctionDeclContext * /*ctx*/) override { }
 
   virtual void enterFunctionBlockDecl(STParser::FunctionBlockDeclContext * /*ctx*/) override { }
   virtual void exitFunctionBlockDecl(STParser::FunctionBlockDeclContext * /*ctx*/) override { }
+
+  virtual void enterMethodDecl(STParser::MethodDeclContext * /*ctx*/) override { }
+  virtual void exitMethodDecl(STParser::MethodDeclContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }

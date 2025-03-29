@@ -25,6 +25,10 @@ public:
 
     virtual antlrcpp::Any visitProgramDecl(STParser::ProgramDeclContext *context) = 0;
 
+    virtual antlrcpp::Any visitInterfaceSection(STParser::InterfaceSectionContext *context) = 0;
+
+    virtual antlrcpp::Any visitBodySection(STParser::BodySectionContext *context) = 0;
+
     virtual antlrcpp::Any visitStatement_list(STParser::Statement_listContext *context) = 0;
 
     virtual antlrcpp::Any visitSelectStmt(STParser::SelectStmtContext *context) = 0;
@@ -73,7 +77,15 @@ public:
 
     virtual antlrcpp::Any visitType(STParser::TypeContext *context) = 0;
 
+    virtual antlrcpp::Any visitBasicType(STParser::BasicTypeContext *context) = 0;
+
+    virtual antlrcpp::Any visitEnumeratedType(STParser::EnumeratedTypeContext *context) = 0;
+
+    virtual antlrcpp::Any visitSubrangeType(STParser::SubrangeTypeContext *context) = 0;
+
     virtual antlrcpp::Any visitFuncParams(STParser::FuncParamsContext *context) = 0;
+
+    virtual antlrcpp::Any visitFuncParam(STParser::FuncParamContext *context) = 0;
 
     virtual antlrcpp::Any visitArray(STParser::ArrayContext *context) = 0;
 
@@ -87,9 +99,19 @@ public:
 
     virtual antlrcpp::Any visitVarDeclaration(STParser::VarDeclarationContext *context) = 0;
 
+    virtual antlrcpp::Any visitArrayType(STParser::ArrayTypeContext *context) = 0;
+
+    virtual antlrcpp::Any visitRange(STParser::RangeContext *context) = 0;
+
+    virtual antlrcpp::Any visitStructType(STParser::StructTypeContext *context) = 0;
+
+    virtual antlrcpp::Any visitStructMember(STParser::StructMemberContext *context) = 0;
+
     virtual antlrcpp::Any visitFunctionDecl(STParser::FunctionDeclContext *context) = 0;
 
     virtual antlrcpp::Any visitFunctionBlockDecl(STParser::FunctionBlockDeclContext *context) = 0;
+
+    virtual antlrcpp::Any visitMethodDecl(STParser::MethodDeclContext *context) = 0;
 
 
 };

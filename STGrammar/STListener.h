@@ -23,6 +23,12 @@ public:
   virtual void enterProgramDecl(STParser::ProgramDeclContext *ctx) = 0;
   virtual void exitProgramDecl(STParser::ProgramDeclContext *ctx) = 0;
 
+  virtual void enterInterfaceSection(STParser::InterfaceSectionContext *ctx) = 0;
+  virtual void exitInterfaceSection(STParser::InterfaceSectionContext *ctx) = 0;
+
+  virtual void enterBodySection(STParser::BodySectionContext *ctx) = 0;
+  virtual void exitBodySection(STParser::BodySectionContext *ctx) = 0;
+
   virtual void enterStatement_list(STParser::Statement_listContext *ctx) = 0;
   virtual void exitStatement_list(STParser::Statement_listContext *ctx) = 0;
 
@@ -95,8 +101,20 @@ public:
   virtual void enterType(STParser::TypeContext *ctx) = 0;
   virtual void exitType(STParser::TypeContext *ctx) = 0;
 
+  virtual void enterBasicType(STParser::BasicTypeContext *ctx) = 0;
+  virtual void exitBasicType(STParser::BasicTypeContext *ctx) = 0;
+
+  virtual void enterEnumeratedType(STParser::EnumeratedTypeContext *ctx) = 0;
+  virtual void exitEnumeratedType(STParser::EnumeratedTypeContext *ctx) = 0;
+
+  virtual void enterSubrangeType(STParser::SubrangeTypeContext *ctx) = 0;
+  virtual void exitSubrangeType(STParser::SubrangeTypeContext *ctx) = 0;
+
   virtual void enterFuncParams(STParser::FuncParamsContext *ctx) = 0;
   virtual void exitFuncParams(STParser::FuncParamsContext *ctx) = 0;
+
+  virtual void enterFuncParam(STParser::FuncParamContext *ctx) = 0;
+  virtual void exitFuncParam(STParser::FuncParamContext *ctx) = 0;
 
   virtual void enterArray(STParser::ArrayContext *ctx) = 0;
   virtual void exitArray(STParser::ArrayContext *ctx) = 0;
@@ -116,11 +134,26 @@ public:
   virtual void enterVarDeclaration(STParser::VarDeclarationContext *ctx) = 0;
   virtual void exitVarDeclaration(STParser::VarDeclarationContext *ctx) = 0;
 
+  virtual void enterArrayType(STParser::ArrayTypeContext *ctx) = 0;
+  virtual void exitArrayType(STParser::ArrayTypeContext *ctx) = 0;
+
+  virtual void enterRange(STParser::RangeContext *ctx) = 0;
+  virtual void exitRange(STParser::RangeContext *ctx) = 0;
+
+  virtual void enterStructType(STParser::StructTypeContext *ctx) = 0;
+  virtual void exitStructType(STParser::StructTypeContext *ctx) = 0;
+
+  virtual void enterStructMember(STParser::StructMemberContext *ctx) = 0;
+  virtual void exitStructMember(STParser::StructMemberContext *ctx) = 0;
+
   virtual void enterFunctionDecl(STParser::FunctionDeclContext *ctx) = 0;
   virtual void exitFunctionDecl(STParser::FunctionDeclContext *ctx) = 0;
 
   virtual void enterFunctionBlockDecl(STParser::FunctionBlockDeclContext *ctx) = 0;
   virtual void exitFunctionBlockDecl(STParser::FunctionBlockDeclContext *ctx) = 0;
+
+  virtual void enterMethodDecl(STParser::MethodDeclContext *ctx) = 0;
+  virtual void exitMethodDecl(STParser::MethodDeclContext *ctx) = 0;
 
 
 };

@@ -39,12 +39,15 @@ END_REPEAT: 'END_REPEAT';
 PROGRAM : 'PROGRAM';
 END_PROGRAM: 'END_PROGRAM';
 IF : 'IF';
+ELSEIF: 'ELSEIF';
 THEN: 'THEN';
 ELSE: 'ELSE';
 END_IF: 'END_IF';
 CASE: 'CASE';
 OF: 'OF';
 END_CASE: 'END_CASE';
+METHOD: 'METHOD';
+END_METHOD: 'END_METHOD';
 
 startpoint: program_list* EOF;
 
@@ -55,10 +58,16 @@ program_list
     ;
 
 programDecl
-    : PROGRAM IDENT  declarationStmt?  statement_list*  END_PROGRAM
-
+    : PROGRAM IDENT  interfaceSection? bodySection  END_PROGRAM
     ;
 
+interfaceSection
+    : varDeclarationBlock+
+    ;
+
+bodySection
+    : statement_list*
+    ;
 
 statement_list
     : assignStmt? ';'
@@ -80,7 +89,7 @@ iterationStmt
     ;
 
 callFuncStmt
-    : (IDENT | 'AND' | 'OR' | 'XOR' | 'MOD' | 'NOT') '(' (funcParams)? ')'
+    : IDENT '(' funcParams? ')'
     ;
 
 jumpStmt
@@ -108,6 +117,10 @@ COMMENT_LINE
 
 COMMENT_PARA
     :  '/*' .*? '*/' -> skip
+    ;
+
+STRING_LITERAL
+    :  '"' (~["\\] | '\\' .)* '"'
     ;
 
 assignStmt
@@ -150,7 +163,7 @@ addExpr
 
 multipliExpr
     : unaryExpr
-    | multipliExpr ('*' | '/' | '**' | '%') unaryExpr
+    | multipliExpr ('*' | '/' | '**' | '%' | 'SHL' | 'SHR') unaryExpr
     ;
 
 unaryExpr
@@ -161,10 +174,11 @@ primary
     : '(' expr ')'
     | IDENT
     | NUMBER
+    | STRING_LITERAL
     ;
 
 ifStmt
-    : IF expr THEN statement_list* (ELSE statement_list*)?  END_IF
+    : IF expr THEN statement_list* (ELSEIF expr THEN statement_list)* (ELSE statement_list*)?  END_IF
     ;
 
 caseStmt
@@ -193,14 +207,36 @@ repeatStmt
     ;
 
 type
+    : basicType
+    | arrayType
+    | structType
+    | enumeratedType
+    | subrangeType
+    | IDENT  // 用户定义类型
+    ;
+
+basicType
     : INT | SINT | DINT | LINT | USINT | UINT | UDINT | ULINT
     | REAL | LREAL
     | BOOL | BYTE | WORD | DWORD | LWORD
     ;
 
+enumeratedType
+    : '(' IDENT (',' IDENT)* ')'
+    ;
+
+subrangeType
+    : basicType '(' expr '..' expr ')'
+    ;
+
 funcParams
-    : IDENT (':=' expr? | '=>' (ident)? | expr) (',' funcParams)*
-    | expr (',' expr)*
+    : funcParam (',' funcParam)*
+    ;
+
+funcParam
+    : IDENT ':=' expr
+    | IDENT '=>' ident
+    | expr
     ;
 
 ident
@@ -222,13 +258,35 @@ varDeclarationBlock
     ;
 
 varDeclaration
-    :  IDENT  type (':=' NUMBER)? ';'
+    :  IDENT ':' (type | arrayType | structType) (':=' expr)? ';'
     ;
 
+
+arrayType
+    : 'ARRAY' '[' range (',' range)* ']' 'OF' type
+    ;
+
+range
+    : expr '..' expr
+    ;
+
+structType
+    : 'STRUCT' structMember+ 'END_STRUCT'
+    ;
+
+structMember
+    : IDENT ':' type ';'
+    ;
+
+
 functionDecl
-    : FUNCTION IDENT ':' type varDeclarationBlock*  statement_list* END_FUNCTION
+    : FUNCTION IDENT ':' type interfaceSection?  bodySection END_FUNCTION
     ;
 
 functionBlockDecl
-    : FUNCTION_BLOCK IDENT  varDeclarationBlock*  statement_list* END_FUNCTION_BLOCK
+    : FUNCTION_BLOCK IDENT  interfaceSection?  bodySection methodDecl* END_FUNCTION_BLOCK
+    ;
+
+methodDecl
+    : METHOD IDENT ':' type interfaceSection? bodySection END_METHOD
     ;

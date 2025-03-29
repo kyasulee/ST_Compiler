@@ -27,6 +27,14 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitInterfaceSection(STParser::InterfaceSectionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitBodySection(STParser::BodySectionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitStatement_list(STParser::Statement_listContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -123,7 +131,23 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitBasicType(STParser::BasicTypeContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitEnumeratedType(STParser::EnumeratedTypeContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitSubrangeType(STParser::SubrangeTypeContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitFuncParams(STParser::FuncParamsContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitFuncParam(STParser::FuncParamContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -151,11 +175,31 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitArrayType(STParser::ArrayTypeContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitRange(STParser::RangeContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitStructType(STParser::StructTypeContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitStructMember(STParser::StructMemberContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitFunctionDecl(STParser::FunctionDeclContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual antlrcpp::Any visitFunctionBlockDecl(STParser::FunctionBlockDeclContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitMethodDecl(STParser::MethodDeclContext *ctx) override {
     return visitChildren(ctx);
   }
 
