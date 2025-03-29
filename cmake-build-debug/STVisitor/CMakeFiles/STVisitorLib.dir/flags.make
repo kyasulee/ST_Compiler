@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/llvm-c-17 -I/usr/include/llvm-17 -I/root/codes/llvm/st_builder/STVisitor -I/root/codes/llvm/st_builder/STVisitor/../STGrammar -I/root/codes/llvm/st_builder/STGrammar
+CXX_INCLUDES = -I/home/wjq/workspace/llvm/include -I/root/codes/llvm/st_builder/STVisitor -I/root/codes/llvm/st_builder/STVisitor/../STGrammar -I/usr/include/llvm-c-17 -I/usr/include/llvm-17 -I/root/codes/llvm/st_builder/STGrammar
 
 CXX_FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
 

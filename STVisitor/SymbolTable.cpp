@@ -44,10 +44,19 @@ SymbolEntry* SymbolTable::lookupSymbol(const std::string& name) {
     return nullptr;
 }
 
+void SymbolTable::addFunctionMember(const std::string& fuName, const std::string& memberName) {
+    SymbolEntry* fuEntry = lookupSymbol(fuName);
+    if (!fuEntry || fuEntry->type != SymbolType::Function) {
+        std::cerr << "Error: " << fuName << " is not a valid Function!" << std::endl;
+        return;
+    }
+    fuEntry->addMember(memberName);
+}
+
 void SymbolTable::addFunctionBlockMember(const std::string &fbName, const std::string &memberName) {
     SymbolEntry* fbEntry = lookupSymbol(fbName);
     if (!fbEntry || fbEntry->type != SymbolType::FunctionBlock) {
-        std::cerr << "Error: '" << fbName << "' is not a valid FunctionBlock!" << std::endl;
+        std::cerr << "Error: " << fbName << " is not a valid FunctionBlock!" << std::endl;
         return;
     }
     fbEntry->addMember(memberName);

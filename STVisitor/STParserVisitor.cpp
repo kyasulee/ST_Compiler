@@ -43,6 +43,8 @@ antlrcpp::Any newSTVisitor::visitProgramDecl(STParser::ProgramDeclContext *ctx) 
     std::string progName = ctx->IDENT()->getText();
     std::cout << "Visiting Program Decl:" << progName << std::endl;
 
+    symbolTable.addSymbol(progName, SymbolType::Program, "PROGRAM", true);
+
     // 变量声明
     if(ctx->declarationStmt()) {
         visit(ctx->declarationStmt());
@@ -569,6 +571,12 @@ antlrcpp::Any newSTVisitor::visitFunctionDecl(STParser::FunctionDeclContext *ctx
 
     for (auto stmt : ctx->statement_list()) {
         visit(stmt);
+    }
+
+    // 添加功能块成员
+    for (auto varDecl : ctx->varDeclarationBlock()) {
+        std::string memberName = varDecl->getText();
+        symbolTable.addFunctionMember(functionName, memberName);
     }
 
     symbolTable.exitScope();  // 退出函数作用域

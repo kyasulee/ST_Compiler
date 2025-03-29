@@ -55,14 +55,14 @@ struct SymbolEntry {
 
 class SymbolTable {
 private:
-    // 每个作用域是一个哈希表
-    std::vector<std::unordered_map<std::string, SymbolEntry>> scopes;
+    std::vector<std::unordered_map<std::string, SymbolEntry>> scopes; // 当前作用域
 
 public:
     void enterScope();  // 进入新作用域
     void exitScope();   // 退出当前作用域
     void addSymbol(const std::string& name, SymbolType type, const std::string& dataType, bool isGlobal = false);
     SymbolEntry* lookupSymbol(const std::string& name);
+    void addFunctionMember(const std::string& fuName, const std::string& memberName);
     void addFunctionBlockMember(const std::string& fbName, const std::string& memberName);
     void print() const;
 };
