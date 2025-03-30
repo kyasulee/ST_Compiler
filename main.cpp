@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 
 #include "antlr4-runtime.h"
 #include "STGrammar/STParser.h"
@@ -8,6 +9,10 @@
 #include "STParserVisitor.h"
 
 int main(int argc, const char* argv[]) {
+
+    std::cout << "Current Working Directory: "
+    << std::filesystem::current_path() << std::endl;
+
     std::fstream inputFile(argv[1]);
     if (!inputFile.is_open()) {
         std::cerr << "Error: Could not open file " << argv[1] << std::endl;

@@ -5,7 +5,6 @@ PROGRAM Example
     END_VAR
 
     x := 10;  // 赋值语句
-    z := 10;  // 报错：Error: Undefined variable: z
     IF x > 5 THEN  // 选择语句
         x := x + 1;
     END_IF;

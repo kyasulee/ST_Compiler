@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o"
+  "CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o.d"
   "CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.o"
   "CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.o.d"
   "CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.o"

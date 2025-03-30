@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/local/include/antlr4-runtime -I/root/codes/llvm/st_builder/STVisitor -I/root/codes/llvm/st_builder/STVisitor/../STGrammar -I/usr/include/llvm-c-17 -I/usr/include/llvm-17 -I/root/codes/llvm/st_builder/STGrammar
+CXX_INCLUDES = -I/usr/local/include/antlr4-runtime -I/root/codes/llvm/st_builder/STVisitor -I/root/codes/llvm/st_builder/STVisitor/../STGrammar -I/root/codes/llvm/st_builder/STVisitor/../include -I/usr/include/llvm-c-17 -I/usr/include/llvm-17 -I/root/codes/llvm/st_builder/STGrammar
 
 CXX_FLAGS = 
 

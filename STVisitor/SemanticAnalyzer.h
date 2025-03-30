@@ -16,13 +16,16 @@ private:
     std::unordered_map<std::string, std::string> implicitConversions; // 允许的隐式转换
 
 public:
-    SemanticAnalyzer();
-
     void enterScope();  // 进入新作用域
     void exitScope();   // 退出当前作用域
 
+    std::shared_ptr<SymbolTable> getCurrentSymbolTable() const {
+        return currentScope;
+    }
+
     bool declareVariable(const std::string& name, const std::string& datatype); // 变量声明
     bool checkVariableUsage(const std::string &name);       // 变量使用
+    bool declareProgram(const std::string& name);
     bool declareFunction(const std::string& name, const std::string &returnType); // fu声明检查
     bool checkFunctionCall(const std::string& name); // fu调用检查
     bool declareFunctionBlock(const std::string& name);  // fb声明

@@ -23,6 +23,8 @@ set(SRC_FILES
         SymbolTable.cpp
         SemanticAnalyzer.h
         SemanticAnalyzer.cpp
+        AnyTypeCheck.h
+        AnyTypeCheck.cpp
 )
 
 # 添加可执行文件或静态库

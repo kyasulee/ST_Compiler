@@ -3,9 +3,6 @@
 //
 #include "SemanticAnalyzer.h"
 
-SemanticAnalyzer::SemanticAnalyzer() {
-    currentScope = std::make_shared<SymbolTable>();
-}
 
 // 进入新作用域
 void SemanticAnalyzer::enterScope() {
@@ -14,8 +11,8 @@ void SemanticAnalyzer::enterScope() {
 
 // 退出作用域
 void SemanticAnalyzer::exitScope() {
-    if(currentScope->parentScope) {
-        currentScope = currentScope->parentScope;
+    if (currentScope) {
+        currentScope = currentScope->getParentScope();
     } else {
         std::cerr << "Error: No scope to exit!" << std::endl;
     }
@@ -34,6 +31,15 @@ bool SemanticAnalyzer::declareVariable(const std::string &name, const std::strin
 bool SemanticAnalyzer::checkVariableUsage(const std::string &name) {
     if(!currentScope->lookupSymbol(name)) {
         std::cerr << "Error: Variable '" << name << "' is not declared." << std::endl;
+        return false;
+    }
+    return true;
+}
+
+// program声明检查
+bool SemanticAnalyzer::declareProgram(const std::string& name) {
+    if (!currentScope->addSymbol(name, SymbolType::Program, "")) {
+        std::cerr << "Error: Program '" << name << "' is already declared in this scope." << std::endl;
         return false;
     }
     return true;

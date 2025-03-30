@@ -228,6 +228,30 @@ STVisitorLib/fast:
 	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/build
 .PHONY : STVisitorLib/fast
 
+AnyTypeCheck.o: AnyTypeCheck.cpp.o
+.PHONY : AnyTypeCheck.o
+
+# target to build an object file
+AnyTypeCheck.cpp.o:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o
+.PHONY : AnyTypeCheck.cpp.o
+
+AnyTypeCheck.i: AnyTypeCheck.cpp.i
+.PHONY : AnyTypeCheck.i
+
+# target to preprocess a source file
+AnyTypeCheck.cpp.i:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.i
+.PHONY : AnyTypeCheck.cpp.i
+
+AnyTypeCheck.s: AnyTypeCheck.cpp.s
+.PHONY : AnyTypeCheck.s
+
+# target to generate assembly for a file
+AnyTypeCheck.cpp.s:
+	cd /root/codes/llvm/st_builder/cmake-build-debug && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.s
+.PHONY : AnyTypeCheck.cpp.s
+
 STParserVisitor.o: STParserVisitor.cpp.o
 .PHONY : STParserVisitor.o
 
@@ -316,6 +340,9 @@ help:
 	@echo "... omp_gen"
 	@echo "... vt_gen"
 	@echo "... STVisitorLib"
+	@echo "... AnyTypeCheck.o"
+	@echo "... AnyTypeCheck.i"
+	@echo "... AnyTypeCheck.s"
 	@echo "... STParserVisitor.o"
 	@echo "... STParserVisitor.i"
 	@echo "... STParserVisitor.s"

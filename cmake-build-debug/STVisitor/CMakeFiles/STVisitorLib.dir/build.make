@@ -111,11 +111,26 @@ STVisitor/CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.s"
 	cd /root/codes/llvm/st_builder/cmake-build-debug/STVisitor && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/codes/llvm/st_builder/STVisitor/SemanticAnalyzer.cpp -o CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.s
 
+STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o: STVisitor/CMakeFiles/STVisitorLib.dir/flags.make
+STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o: /root/codes/llvm/st_builder/STVisitor/AnyTypeCheck.cpp
+STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o: STVisitor/CMakeFiles/STVisitorLib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o"
+	cd /root/codes/llvm/st_builder/cmake-build-debug/STVisitor && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o -MF CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o.d -o CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o -c /root/codes/llvm/st_builder/STVisitor/AnyTypeCheck.cpp
+
+STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.i"
+	cd /root/codes/llvm/st_builder/cmake-build-debug/STVisitor && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/codes/llvm/st_builder/STVisitor/AnyTypeCheck.cpp > CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.i
+
+STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.s"
+	cd /root/codes/llvm/st_builder/cmake-build-debug/STVisitor && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/codes/llvm/st_builder/STVisitor/AnyTypeCheck.cpp -o CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.s
+
 # Object files for target STVisitorLib
 STVisitorLib_OBJECTS = \
 "CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.o" \
 "CMakeFiles/STVisitorLib.dir/SymbolTable.cpp.o" \
-"CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.o"
+"CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.o" \
+"CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o"
 
 # External object files for target STVisitorLib
 STVisitorLib_EXTERNAL_OBJECTS =
@@ -123,9 +138,10 @@ STVisitorLib_EXTERNAL_OBJECTS =
 STVisitor/libSTVisitorLib.a: STVisitor/CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.o
 STVisitor/libSTVisitorLib.a: STVisitor/CMakeFiles/STVisitorLib.dir/SymbolTable.cpp.o
 STVisitor/libSTVisitorLib.a: STVisitor/CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.o
+STVisitor/libSTVisitorLib.a: STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o
 STVisitor/libSTVisitorLib.a: STVisitor/CMakeFiles/STVisitorLib.dir/build.make
 STVisitor/libSTVisitorLib.a: STVisitor/CMakeFiles/STVisitorLib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libSTVisitorLib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/root/codes/llvm/st_builder/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libSTVisitorLib.a"
 	cd /root/codes/llvm/st_builder/cmake-build-debug/STVisitor && $(CMAKE_COMMAND) -P CMakeFiles/STVisitorLib.dir/cmake_clean_target.cmake
 	cd /root/codes/llvm/st_builder/cmake-build-debug/STVisitor && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/STVisitorLib.dir/link.txt --verbose=$(VERBOSE)
 

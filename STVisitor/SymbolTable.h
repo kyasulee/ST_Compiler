@@ -51,25 +51,24 @@ struct SymbolEntry {
             std::cout << std::endl;
         }
     }
+
 };
 
 class SymbolTable {
 private:
-    std::vector<std::unordered_map<std::string, SymbolEntry>> scopes; // 当前作用域
+    std::unordered_map<std::string, SymbolEntry> scopes; // 当前作用域
+    std::shared_ptr<SymbolTable> parentScope; // 父作用域指针
 
 public:
-    std::shared_ptr<SymbolTable> parentScope; // 父作用域指针
-    std::unordered_map<std::string, SymbolType> systemFuncLib;
+    SymbolTable(std::shared_ptr<SymbolTable> parent = nullptr) : parentScope(parent) {}
 
-    SymbolTable(std::shared_ptr<SymbolTable> parent = nullptr);
-
-    void enterScope();  // 进入新作用域
-    void exitScope();   // 退出当前作用域
     bool addSymbol(const std::string& name, SymbolType type, const std::string& dataType, bool isGlobal = false);
     SymbolEntry* lookupSymbol(const std::string& name);
-    void print() const;
-
     void initSystemFuncLib(const std::string& jsonPath);
+
+    std::shared_ptr<SymbolTable> getParentScope() const {
+        return parentScope;
+    }
 };
 
 #endif //ST_BUILDER_SYMBOLTABLE_H
