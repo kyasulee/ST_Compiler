@@ -6,6 +6,7 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
   /root/codes/llvm/st_builder/STGrammar/STLexer.h \
   /root/codes/llvm/st_builder/STGrammar/STParser.h \
   /root/codes/llvm/st_builder/STGrammar/STVisitor.h \
+  /root/codes/llvm/st_builder/STVisitor/AnyTypeCheck.h \
   /root/codes/llvm/st_builder/STVisitor/STParserVisitor.h \
   /root/codes/llvm/st_builder/STVisitor/SemanticAnalyzer.h \
   /root/codes/llvm/st_builder/STVisitor/SymbolTable.h \
@@ -519,8 +520,6 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/local/include/antlr4-runtime/tree/pattern/Chunk.h:
 
-/usr/local/include/antlr4-runtime/tree/TerminalNode.h:
-
 /usr/local/include/antlr4-runtime/tree/ParseTreeWalker.h:
 
 /usr/local/include/antlr4-runtime/tree/ParseTreeProperty.h:
@@ -793,12 +792,6 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/c++/13/type_traits:
 
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/usr/include/c++/13/bits/utility.h:
-
-/usr/include/c++/13/bits/stl_function.h:
-
 /usr/local/include/antlr4-runtime/dfa/DFASerializer.h:
 
 /usr/include/c++/13/bits/uses_allocator_args.h:
@@ -915,6 +908,12 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/c++/13/bits/ostream.tcc:
 
+/usr/include/c++/13/bits/stl_function.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/c++/13/bits/utility.h:
+
 /usr/local/include/antlr4-runtime/atn/StarLoopEntryState.h:
 
 /usr/include/c++/13/bits/move.h:
@@ -951,7 +950,27 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/c++/13/bits/stl_multimap.h:
+
+/usr/include/c++/13/bits/locale_conv.h:
+
+/usr/include/c++/13/bits/istream.tcc:
+
+/usr/include/c++/13/bits/exception_ptr.h:
+
+/usr/local/include/antlr4-runtime/tree/ErrorNodeImpl.h:
+
+/usr/include/c++/13/bits/vector.tcc:
+
+/usr/include/c++/13/optional:
+
 /usr/include/c++/13/bits/stringfwd.h:
+
+/usr/include/c++/13/bits/locale_classes.tcc:
+
+/usr/include/c++/13/bits/uniform_int_dist.h:
 
 /usr/include/c++/13/bits/stl_stack.h:
 
@@ -1009,6 +1028,18 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/c++/13/bits/stream_iterator.h:
 
+/usr/include/c++/13/bits/stl_raw_storage_iter.h:
+
+/usr/local/include/antlr4-runtime/atn/ProfilingATNSimulator.h:
+
+/usr/include/c++/13/algorithm:
+
+/usr/include/c++/13/cstdint:
+
+/usr/include/c++/13/cstdlib:
+
+/root/codes/llvm/st_builder/main.cpp:
+
 /usr/include/c++/13/atomic:
 
 /usr/include/c++/13/bits/basic_string.h:
@@ -1026,6 +1057,10 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 /usr/local/include/antlr4-runtime/atn/ParserATNSimulator.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/local/include/antlr4-runtime/tree/TerminalNode.h:
+
+/root/codes/llvm/st_builder/STVisitor/AnyTypeCheck.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
@@ -1055,6 +1090,16 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/c++/13/bits/codecvt.h:
 
+/root/codes/llvm/st_builder/STVisitor/STParserVisitor.h:
+
+/usr/include/c++/13/new:
+
+/usr/include/c++/13/bits/shared_ptr.h:
+
+/usr/include/c++/13/bits/refwrap.h:
+
+/usr/include/c++/13/bits/fstream.tcc:
+
 /usr/local/include/antlr4-runtime/atn/LexerAction.h:
 
 /usr/include/wchar.h:
@@ -1064,28 +1109,6 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 /root/codes/llvm/st_builder/STGrammar/STLexer.h:
 
 /usr/include/llvm-17/llvm/IR/Use.h:
-
-/root/codes/llvm/st_builder/STVisitor/STParserVisitor.h:
-
-/usr/include/c++/13/new:
-
-/usr/include/c++/13/cstdint:
-
-/usr/include/c++/13/cstdlib:
-
-/root/codes/llvm/st_builder/main.cpp:
-
-/usr/include/c++/13/bits/stl_raw_storage_iter.h:
-
-/usr/local/include/antlr4-runtime/atn/ProfilingATNSimulator.h:
-
-/usr/include/c++/13/algorithm:
-
-/usr/include/c++/13/bits/shared_ptr.h:
-
-/usr/include/c++/13/bits/refwrap.h:
-
-/usr/include/c++/13/bits/fstream.tcc:
 
 /usr/include/c++/13/bits/predefined_ops.h:
 
@@ -1129,22 +1152,6 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/llvm-17/llvm/ADT/STLFunctionalExtras.h:
 
-/usr/include/c++/13/bits/locale_conv.h:
-
-/usr/include/c++/13/bits/istream.tcc:
-
-/usr/include/c++/13/bits/exception_ptr.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/include/c++/13/bits/stl_multimap.h:
-
-/usr/local/include/antlr4-runtime/tree/ErrorNodeImpl.h:
-
-/usr/include/c++/13/bits/vector.tcc:
-
-/usr/include/c++/13/optional:
-
 /usr/include/c++/13/bits/deque.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
@@ -1152,10 +1159,6 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 /usr/include/c++/13/bits/streambuf_iterator.h:
 
 /usr/include/c++/13/ostream:
-
-/usr/include/c++/13/cassert:
-
-/usr/include/c++/13/bits/cpp_type_traits.h:
 
 /usr/include/c++/13/bits/cxxabi_forced.h:
 
@@ -1217,9 +1220,9 @@ CMakeFiles/st_builder.dir/main.cpp.o: /root/codes/llvm/st_builder/main.cpp \
 
 /usr/include/errno.h:
 
-/usr/include/c++/13/bits/uniform_int_dist.h:
+/usr/include/c++/13/bits/cpp_type_traits.h:
 
-/usr/include/c++/13/bits/locale_classes.tcc:
+/usr/include/c++/13/cassert:
 
 /usr/include/c++/13/cctype:
 

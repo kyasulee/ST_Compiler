@@ -126,6 +126,10 @@ STRING_LITERAL
     :  '"' (~["\\] | '\\' .)* '"'
     ;
 
+PREFIX_OP
+    :  ('-'+ | '!' | 'NOT')
+    ;
+
 assignStmt
     : prefixExpr ':=' (expr | callFuncStmt)
     ;
@@ -170,7 +174,7 @@ multipliExpr
     ;
 
 unaryExpr
-    : ('-'+ | '!' | 'NOT')? primary
+    : PREFIX_OP? primary
     ;
 
 primary

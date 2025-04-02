@@ -69,6 +69,8 @@ public:
     std::shared_ptr<SymbolTable> getParentScope() const {
         return parentScope;
     }
+
+    void print() const;
 };
 
 #endif //ST_BUILDER_SYMBOLTABLE_H

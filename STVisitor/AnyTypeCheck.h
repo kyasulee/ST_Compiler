@@ -29,58 +29,51 @@ enum class DataType {
 // ANY_INT
 class ANY_INT {
 private:
-    static const std::unordered_set<DataType> validTypes;
+    static inline const std::unordered_set<DataType> validTypes = {
+            DataType::SINT,
+            DataType::INT,
+            DataType::DINT,
+            DataType::LINT,
+            DataType::USINT,
+            DataType::UINT,
+            DataType::UDINT,
+            DataType::ULINT
+    };
 
 public:
     static bool isPartOf(DataType type);
-};
-
-// 初始化静态成员变量
-const std::unordered_set<DataType> ANY_INT::validTypes = {
-        DataType::SINT,
-        DataType::INT,
-        DataType::DINT,
-        DataType::LINT,
-        DataType::USINT,
-        DataType::UINT,
-        DataType::UDINT,
-        DataType::ULINT
 };
 
 // ANY_REAL
 class ANY_REAL {
 private:
-    static const std::unordered_set<DataType> validTypes;
+    static inline const std::unordered_set<DataType> validTypes = {
+            DataType::REAL,
+            DataType::LREAL
+    };
 
 public:
     static bool isPartOf(DataType type);
-};
-
-const std::unordered_set<DataType> ANY_REAL::validTypes = {
-        DataType::REAL,
-        DataType::LREAL
 };
 
 // ANY_NUM
 class ANY_NUM {
 private:
-    static const std::unordered_set<DataType> validTypes;
+    static inline const std::unordered_set<DataType> validTypes = {
+                DataType::SINT,
+                DataType::INT,
+                DataType::DINT,
+                DataType::LINT,
+                DataType::USINT,
+                DataType::UINT,
+                DataType::UDINT,
+                DataType::ULINT,
+                DataType::REAL,
+                DataType::LREAL
+    };
 
 public:
     static bool isPartOf(DataType type);
-};
-
-const std::unordered_set<DataType> ANY_NUM::validTypes = {
-        DataType::SINT,
-        DataType::INT,
-        DataType::DINT,
-        DataType::LINT,
-        DataType::USINT,
-        DataType::UINT,
-        DataType::UDINT,
-        DataType::ULINT,
-        DataType::REAL,
-        DataType::LREAL
 };
 
 #endif //ST_BUILDER_ANYTYPECHECK_H

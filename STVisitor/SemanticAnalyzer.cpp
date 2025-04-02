@@ -2,7 +2,7 @@
 // Created by 84648 on 2025/3/29.
 //
 #include "SemanticAnalyzer.h"
-
+#include "AnyTypeCheck.h"
 
 // 进入新作用域
 void SemanticAnalyzer::enterScope() {
@@ -60,6 +60,32 @@ bool SemanticAnalyzer::checkFunctionCall(const std::string &name) {
     if (!fuSymbol || fuSymbol->type != SymbolType::Function) {
         std::cerr << "Error: Function '" << name << "' is not declared." << std::endl;
         return false;
+    }
+    return true;
+}
+
+bool SemanticAnalyzer::checkFunctionReturnType(const std::string &name, const std::string dataType) {
+    SymbolEntry* fuSymbol = currentScope->lookupSymbol(name);
+    if (fuSymbol) {
+        std::string returnType = fuSymbol->dataType;
+        DataType actualType = StringToDataType(dataType);
+        if (returnType == "ANY_INT") {
+            if (!ANY_INT::isPartOf(actualType)) {
+                return false;
+            }
+        } else if (returnType == "ANY_NUM") {
+            if (!ANY_NUM::isPartOf(actualType)) {
+                return false;
+            }
+        } else if (returnType == "ANY_REAL") {
+            if (!ANY_REAL::isPartOf(actualType)) {
+                return false;
+            }
+        } else {
+            if (returnType != dataType) {
+                return false;
+            }
+        }
     }
     return true;
 }
@@ -125,4 +151,61 @@ bool SemanticAnalyzer::checkAssignment(const std::string &lhs, const std::string
         return false;
     }
     return true;
+}
+
+SymbolEntry* SemanticAnalyzer::getsymbolEntryInScope(const std::string &name) const {
+    SymbolEntry* entry = currentScope->lookupSymbol(name);
+    if (entry != nullptr) {
+        return entry;
+    }
+    return nullptr;
+}
+
+
+bool SemanticAnalyzer::print() const {
+    std::cout << "Symbol Table:" << std::endl;
+    currentScope->print();
+}
+
+// 辅助函数1：将DataType枚举类型变成std::string
+std::string DataTypeToString(DataType type) {
+    switch (type) {
+        case DataType::SINT: return "SINT";
+        case DataType::INT: return "INT";
+        case DataType::DINT: return "DINT";
+        case DataType::LINT: return "LINT";
+        case DataType::USINT: return "USINT";
+        case DataType::UINT: return "UINT";
+        case DataType::UDINT: return "UDINT";
+        case DataType::ULINT: return "ULINT";
+        case DataType::REAL: return "REAL";
+        case DataType::LREAL: return "LREAL";
+        case DataType::BOOL: return "BOOL";
+        case DataType::STRING: return "STRING";
+        case DataType::WSTRING: return "WSTRING";
+        case DataType::TIME: return "TIME";
+        case DataType::DATE: return "DATE";
+        default: throw std::runtime_error("Error: Unknown DataType.");
+    }
+}
+
+// 辅助函数2：将std::string变成DataType枚举类型
+DataType StringToDataType(const std::string& typeStr) {
+    if (typeStr == "SINT") return DataType::SINT;
+    if (typeStr == "INT") return DataType::INT;
+    if (typeStr == "DINT") return DataType::DINT;
+    if (typeStr == "LINT") return DataType::LINT;
+    if (typeStr == "USINT") return DataType::USINT;
+    if (typeStr == "UINT") return DataType::UINT;
+    if (typeStr == "UDINT") return DataType::UDINT;
+    if (typeStr == "ULINT") return DataType::ULINT;
+    if (typeStr == "REAL") return DataType::REAL;
+    if (typeStr == "LREAL") return DataType::LREAL;
+    if (typeStr == "BOOL") return DataType::BOOL;
+    if (typeStr == "STRING") return DataType::STRING;
+    if (typeStr == "WSTRING") return DataType::WSTRING;
+    if (typeStr == "TIME") return DataType::TIME;
+    if (typeStr == "DATE") return DataType::DATE;
+
+    throw std::runtime_error("Error: Unknown type: " + typeStr);
 }

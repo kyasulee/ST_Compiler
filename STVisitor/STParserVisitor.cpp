@@ -116,13 +116,10 @@ antlrcpp::Any newSTVisitor::visitIterationStmt(STParser::IterationStmtContext *c
     std::cout << "Visiting IterationStmt:" << std::endl;
 
     if (ctx->whileStmt()) {
-        std::cout << "now found while statement" << std::endl;
         visit(ctx->whileStmt());
     } else if (ctx->forStmt()) {
-        std::cout << "now found for statement" << std::endl;
         visit(ctx->forStmt());
     } else if (ctx->repeatStmt()) {
-        std::cout << "now found repeat statement" << std::endl;
         visit(ctx->repeatStmt());
     }
 
@@ -140,8 +137,7 @@ antlrcpp::Any newSTVisitor::visitCallFuncStmt(STParser::CallFuncStmtContext *ctx
     }
     std::transform(funcName.begin(), funcName.end(), funcName.begin(), ::toupper);
 
-    // && !semanticAnalyzer.checkFunctionBlockMethodCall(funcName)
-    if (!semanticAnalyzer.checkFunctionCall(funcName))  {
+    if (!semanticAnalyzer.checkFunctionCall(funcName) && !semanticAnalyzer.checkFunctionBlockMethodCall(funcName))  {
         std::cerr << "Error: Variable '" << funcName << "' is not declared!" << std::endl;
         return nullptr;
     }
@@ -176,14 +172,19 @@ antlrcpp::Any newSTVisitor::visitAssignStmt(STParser::AssignStmtContext *ctx) {
     std::cout << "Visiting AssignStmt:" << std::endl;
 
     std::string leftValue;
+    SymbolEntry* entry;
     if (ctx->prefixExpr()) {
         leftValue = ctx->prefixExpr()->getText();
         std::cout << "Left Value of AssignStmt is:" << leftValue << std::endl;
 
         // 查找符号
         std::transform(leftValue.begin(), leftValue.end(), leftValue.begin(), ::toupper);
+
         if (!semanticAnalyzer.checkVariableUsage(leftValue)) {
             std::cerr << "Error: Undefined variable: " << leftValue << std::endl;
+        } else {
+            entry = semanticAnalyzer.getsymbolEntryInScope(leftValue);
+            std::cout << "nulll" << entry->name << entry->dataType<< std::endl;
         }
     }
 
@@ -192,6 +193,14 @@ antlrcpp::Any newSTVisitor::visitAssignStmt(STParser::AssignStmtContext *ctx) {
         visit(ctx->expr());
     } else if (ctx->callFuncStmt()) {
         std::cout << "Right Value of AssignStmt is:" << ctx->callFuncStmt()->getText() << std::endl;
+        // 校验fu的返回值类型是否正确
+        std::string dataType = entry->dataType;
+        std::string funcName = ctx->callFuncStmt()->IDENT()->getText();
+        std::transform(funcName.begin(), funcName.end(), funcName.begin(), ::toupper);
+        if (!semanticAnalyzer.checkFunctionReturnType(funcName, dataType)) {
+            std::cerr << dataType << "不是" << funcName << "支持的输出类型！" << std::endl;
+        }
+
         visit(ctx->callFuncStmt());
     }
 
@@ -221,6 +230,8 @@ antlrcpp::Any newSTVisitor::visitExpr(STParser::ExprContext *ctx) {
 }
 
 antlrcpp::Any newSTVisitor::visitOrExpr(STParser::OrExprContext *ctx) {
+    if (!ctx)
+        return nullptr;
     std::cout  << "Visiting OrExpr:" << std::endl;
 
     if (ctx->orExpr() && ctx->andExpr()) {
@@ -237,6 +248,8 @@ antlrcpp::Any newSTVisitor::visitOrExpr(STParser::OrExprContext *ctx) {
 }
 
 antlrcpp::Any newSTVisitor::visitAndExpr(STParser::AndExprContext *ctx) {
+    if (!ctx)
+        return nullptr;
     std::cout  << "Visiting AddExpr:" << std::endl;
 
     if (ctx->andExpr() && ctx->equalExpr()) {
@@ -253,6 +266,8 @@ antlrcpp::Any newSTVisitor::visitAndExpr(STParser::AndExprContext *ctx) {
 }
 
 antlrcpp::Any newSTVisitor::visitEqualExpr(STParser::EqualExprContext *ctx) {
+    if (!ctx)
+        return nullptr;
     std::cout  << "Visiting EqualExpr:" << std::endl;
 
     if (ctx->equalExpr() && ctx->relationExpr()) {
@@ -269,6 +284,8 @@ antlrcpp::Any newSTVisitor::visitEqualExpr(STParser::EqualExprContext *ctx) {
 }
 
 antlrcpp::Any newSTVisitor::visitRelationExpr(STParser::RelationExprContext *ctx) {
+    if (!ctx)
+        return nullptr;
     std::cout  << "Visiting RelationExpr:" << std::endl;
 
     if (ctx->relationExpr() && ctx->addExpr()) {
@@ -285,6 +302,8 @@ antlrcpp::Any newSTVisitor::visitRelationExpr(STParser::RelationExprContext *ctx
 }
 
 antlrcpp::Any newSTVisitor::visitAddExpr(STParser::AddExprContext *ctx) {
+    if (!ctx)
+        return nullptr;
     std::cout  << "Visiting AddExpr:" << std::endl;
 
     if (ctx->addExpr() && ctx->multipliExpr()) {
@@ -301,6 +320,8 @@ antlrcpp::Any newSTVisitor::visitAddExpr(STParser::AddExprContext *ctx) {
 }
 
 antlrcpp::Any newSTVisitor::visitMultipliExpr(STParser::MultipliExprContext *ctx) {
+    if (!ctx)
+        return nullptr;
     std::cout  << "Visiting MultipliExpr:" << std::endl;
 
     if (ctx->unaryExpr() && ctx->multipliExpr()) {
@@ -317,12 +338,18 @@ antlrcpp::Any newSTVisitor::visitMultipliExpr(STParser::MultipliExprContext *ctx
 }
 
 antlrcpp::Any newSTVisitor::visitUnaryExpr(STParser::UnaryExprContext *ctx) {
+    if (!ctx)
+        return nullptr;
     std::cout  << "Visiting UnaryExpr:" << std::endl;
 
-    std::string op = ctx->getText();
-    std::cout << "operator is:" << op << std::endl;
+    if (ctx->PREFIX_OP()) {
+        std::string op = ctx->getText();
+        std::cout << "operator is:" << op << std::endl;
+    }
 
-    visit(ctx->primary());
+    if (ctx->primary()) {
+        visit(ctx->primary());
+    }
 
     return nullptr;
 }
@@ -333,8 +360,11 @@ antlrcpp::Any newSTVisitor::visitPrimary(STParser::PrimaryContext *ctx) {
         visit(ctx->expr());
     } else if (ctx->IDENT()) {
         std::string identifier = ctx->IDENT()->getText();
+        std::cout << "identifier is: " << identifier << std::endl;
     } else if (ctx->NUMBER()) {
         std::string number = ctx->NUMBER()->getText();
+    } else if (ctx->STRING_LITERAL()) {
+
     }
 
     return nullptr;
@@ -494,6 +524,8 @@ antlrcpp::Any newSTVisitor::visitType(STParser::TypeContext *ctx) {
 }
 
 antlrcpp::Any newSTVisitor::visitFuncParams(STParser::FuncParamsContext *ctx) {
+    if (!ctx)
+        return nullptr;
     std::cout << "Visiting FuncParams:" << std::endl;
 
     for (auto paramCtx : ctx->funcParam()) {
@@ -504,6 +536,8 @@ antlrcpp::Any newSTVisitor::visitFuncParams(STParser::FuncParamsContext *ctx) {
 }
 
 antlrcpp::Any newSTVisitor::visitFuncParam(STParser::FuncParamContext *ctx) {
+    if (!ctx)
+        return nullptr;
     if (ctx->ARROW()) {
         // 输出引脚
         std::string outputPin = ctx->IDENT()->getText();
@@ -518,7 +552,6 @@ antlrcpp::Any newSTVisitor::visitFuncParam(STParser::FuncParamContext *ctx) {
         // 输入引脚
         std::string inputPin = ctx->IDENT()->getText();
 
-
         visit(ctx->expr());
         std::cout << "输入引脚有" << ctx->expr()->getText() << std::endl;
         if (!semanticAnalyzer.checkVariableUsage(ctx->expr()->getText())) {
@@ -529,6 +562,7 @@ antlrcpp::Any newSTVisitor::visitFuncParam(STParser::FuncParamContext *ctx) {
     } else {
         visit(ctx->expr());
     }
+    return nullptr;
 }
 
 antlrcpp::Any newSTVisitor::visitIdenti(STParser::IdentiContext *ctx) {
@@ -608,7 +642,7 @@ antlrcpp::Any newSTVisitor::visitVarDeclaration(STParser::VarDeclarationContext 
         std::cerr << "Error: Variable '" << varName << "' is already declared in this scope!" << std::endl;
         return nullptr;
     }
-
+    symbolTable.print();
     if (ctx->expr()) {
         std::string initialValue = ctx->expr()->getText();
         std::cout << "initialValue is:" << initialValue << std::endl;

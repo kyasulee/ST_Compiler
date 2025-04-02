@@ -60,7 +60,8 @@ SymbolEntry* SymbolTable::lookupSymbol(const std::string& name) {
     // 遍历当前符号表的所有作用域（从最近的作用域开始）
     if (scopes.find(name) != scopes.end()) {
         std::cout << "Found symbol '" << name << "' in current scope." << std::endl;
-        return &scopes.at(name); // 找到符号，返回指针
+        std::cout << scopes[name].name << "===" <<  scopes[name].dataType << std::endl;
+        return &scopes[name]; // 找到符号，返回指针
     }
 
     // 如果当前符号表中找不到，尝试在父作用域中查找
@@ -69,6 +70,24 @@ SymbolEntry* SymbolTable::lookupSymbol(const std::string& name) {
         return parentScope->lookupSymbol(name);
     }
 
-    std::cerr << "Error: Symbol '" << name << "' not found!" << std::endl;
+//    std::cerr << "Error: Symbol '" << name << "' not found!" << std::endl;
     return nullptr;
+}
+
+void SymbolTable::print() const {
+    std::cout << "Symbol Table:" << std::endl;
+    std::cout << scopes.size() << std::endl;
+    for (const auto& scope : scopes) {
+        std::string name = scope.first;
+        auto entry = scope.second;
+
+        std::cout << "  " << name << " ("
+                  << (entry.type == SymbolType::Variable ? "Variable" :
+                      entry.type == SymbolType::Function ? "Function" :
+                      entry.type == SymbolType::FunctionBlock ? "FunctionBlock" : "Program")
+                  << ", " << entry.dataType << ", "
+                  << (entry.isGlobal ? "Global" : "Local") << ")" << std::endl;
+        entry.printMember();
+
+    }
 }

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libSTVisitorLib.a CMakeFiles/STVisitorLib.dir/STParserVisitor.cpp.o CMakeFiles/STVisitorLib.dir/SymbolTable.cpp.o CMakeFiles/STVisitorLib.dir/SemanticAnalyzer.cpp.o CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.o
-/usr/bin/ranlib libSTVisitorLib.a
