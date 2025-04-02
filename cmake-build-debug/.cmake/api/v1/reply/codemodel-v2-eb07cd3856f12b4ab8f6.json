@@ -1,0 +1,201 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "STGrammar",
+					"jsonFile" : "directory-STGrammar-Debug-cea214099d44c7048c6c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "STGrammar",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "STVisitor",
+					"jsonFile" : "directory-STVisitor-Debug-755dd7511d1b364434ee.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "STVisitor",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						4,
+						5,
+						6,
+						7,
+						9
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "st_builder",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "STGrammar",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "STVisitor",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						4,
+						5,
+						6,
+						7,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "AArch64TargetParserTableGen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-AArch64TargetParserTableGen-Debug-eb6f8d7a369ea217b4e0.json",
+					"name" : "AArch64TargetParserTableGen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ARMTargetParserTableGen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-ARMTargetParserTableGen-Debug-b3319e2b1baa6691862f.json",
+					"name" : "ARMTargetParserTableGen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "RISCVTargetParserTableGen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-RISCVTargetParserTableGen-Debug-fd4b0ad312980502b547.json",
+					"name" : "RISCVTargetParserTableGen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "STGrammarLib::@b73edd801a3cb4e5f1a3",
+					"jsonFile" : "target-STGrammarLib-Debug-ad0dca101a6ee7048084.json",
+					"name" : "STGrammarLib",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "STVisitorLib::@3515fd6094ba994e8550",
+					"jsonFile" : "target-STVisitorLib-Debug-f9a0200c86fd0ddcf55d.json",
+					"name" : "STVisitorLib",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "acc_gen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-acc_gen-Debug-08bac1e0b236e977e638.json",
+					"name" : "acc_gen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "intrinsics_gen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-intrinsics_gen-Debug-dbec5322119d32039a30.json",
+					"name" : "intrinsics_gen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "omp_gen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-omp_gen-Debug-4fa2b9a1eb0111f28cbe.json",
+					"name" : "omp_gen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "st_builder::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-st_builder-Debug-797f8c327ee6c4054cbd.json",
+					"name" : "st_builder",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "vt_gen::@3515fd6094ba994e8550",
+					"jsonFile" : "target-vt_gen-Debug-ed521dabdbc1043eede1.json",
+					"name" : "vt_gen",
+					"projectIndex" : 2
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/root/codes/llvm/st_builder/cmake-build-debug",
+		"source" : "/root/codes/llvm/st_builder"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
