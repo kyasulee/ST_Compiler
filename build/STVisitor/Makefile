@@ -210,6 +210,30 @@ AnyTypeCheck.cpp.s:
 	cd /root/codes/llvm/st_builder/build && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/AnyTypeCheck.cpp.s
 .PHONY : AnyTypeCheck.cpp.s
 
+IRNode.o: IRNode.cpp.o
+.PHONY : IRNode.o
+
+# target to build an object file
+IRNode.cpp.o:
+	cd /root/codes/llvm/st_builder/build && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/IRNode.cpp.o
+.PHONY : IRNode.cpp.o
+
+IRNode.i: IRNode.cpp.i
+.PHONY : IRNode.i
+
+# target to preprocess a source file
+IRNode.cpp.i:
+	cd /root/codes/llvm/st_builder/build && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/IRNode.cpp.i
+.PHONY : IRNode.cpp.i
+
+IRNode.s: IRNode.cpp.s
+.PHONY : IRNode.s
+
+# target to generate assembly for a file
+IRNode.cpp.s:
+	cd /root/codes/llvm/st_builder/build && $(MAKE) $(MAKESILENT) -f STVisitor/CMakeFiles/STVisitorLib.dir/build.make STVisitor/CMakeFiles/STVisitorLib.dir/IRNode.cpp.s
+.PHONY : IRNode.cpp.s
+
 STParserVisitor.o: STParserVisitor.cpp.o
 .PHONY : STParserVisitor.o
 
@@ -298,6 +322,9 @@ help:
 	@echo "... AnyTypeCheck.o"
 	@echo "... AnyTypeCheck.i"
 	@echo "... AnyTypeCheck.s"
+	@echo "... IRNode.o"
+	@echo "... IRNode.i"
+	@echo "... IRNode.s"
 	@echo "... STParserVisitor.o"
 	@echo "... STParserVisitor.i"
 	@echo "... STParserVisitor.s"

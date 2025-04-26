@@ -25,6 +25,8 @@ set(SRC_FILES
         SemanticAnalyzer.cpp
         AnyTypeCheck.h
         AnyTypeCheck.cpp
+        IRNode.h
+        IRNode.cpp
 )
 
 # 添加可执行文件或静态库

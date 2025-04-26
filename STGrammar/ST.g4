@@ -51,6 +51,20 @@ END_METHOD: 'END_METHOD';
 
 ASSIGN: ':=';
 ARROW: '=>';
+EQ: '=';
+NEQ: '!=' | '<>';
+ADD: '+';
+SUB: '-';
+MUL: '*';
+DIV: '/';
+EXP: '**';
+MOD: '%';
+SHL: 'SHL';
+SHR: 'SHR';
+LT: '<';
+LTE: '<=';
+GT: '>';
+GTE: '>=';
 
 startpoint: program_list* EOF;
 
@@ -96,11 +110,29 @@ callFuncStmt
     ;
 
 jumpStmt
-    : 'BREAK'
-    | 'RETURN'
-    | 'CONTINUE'
-    | 'EXIT'
+    : BREAK
+    | CONTINUE
+    | RETURN expr?
+    | EXIT
     ;
+
+BREAK
+    : 'BREAK'
+    ;
+
+CONTINUE
+    : 'CONTINUE'
+    ;
+
+EXIT
+    : 'EXIT'
+    ;
+
+RETURN
+    : 'RETURN'
+    ;
+
+
 
 NUMBER
     : [0-9]+
@@ -154,23 +186,24 @@ andExpr
 
 equalExpr
     : relationExpr
-    | equalExpr '=' relationExpr
-    | equalExpr ('!=' | '<>') relationExpr
+    | equalExpr EQ relationExpr
+    | equalExpr NEQ relationExpr
     ;
 
 relationExpr
     : addExpr
-    | relationExpr ('>' | '>=' | '<' | '<=') addExpr
+    | relationExpr (LT | LTE | GT | GTE) addExpr
     ;
 
 addExpr
     : multipliExpr
-    | addExpr ( '+' | '-') multipliExpr
+    | addExpr (ADD|SUB) multipliExpr
     ;
+
 
 multipliExpr
     : unaryExpr
-    | multipliExpr ('*' | '/' | '**' | '%' | 'SHL' | 'SHR') unaryExpr
+    | multipliExpr (MUL| DIV | EXP | MOD | SHL | SHR) unaryExpr
     ;
 
 unaryExpr

@@ -14,20 +14,20 @@ public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
     T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
-    T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, T__18 = 19, T__19 = 20, 
-    T__20 = 21, T__21 = 22, T__22 = 23, T__23 = 24, T__24 = 25, T__25 = 26, 
-    T__26 = 27, T__27 = 28, T__28 = 29, T__29 = 30, T__30 = 31, T__31 = 32, 
-    T__32 = 33, T__33 = 34, T__34 = 35, T__35 = 36, T__36 = 37, VAR = 38, 
-    VAR_INPUT = 39, VAR_OUTPUT = 40, VAR_IN_OUT = 41, VAR_TEMP = 42, END_VAR = 43, 
-    FUNCTION = 44, END_FUNCTION = 45, FUNCTION_BLOCK = 46, END_FUNCTION_BLOCK = 47, 
-    INT = 48, SINT = 49, DINT = 50, LINT = 51, USINT = 52, UINT = 53, UDINT = 54, 
-    ULINT = 55, REAL = 56, LREAL = 57, BOOL = 58, BYTE = 59, WORD = 60, 
-    DWORD = 61, LWORD = 62, FOR = 63, TO = 64, BY = 65, END_FOR = 66, WHILE = 67, 
-    DO = 68, END_WHILE = 69, REPEAT = 70, UNTIL = 71, END_REPEAT = 72, PROGRAM = 73, 
-    END_PROGRAM = 74, IF = 75, ELSEIF = 76, THEN = 77, ELSE = 78, END_IF = 79, 
-    CASE = 80, OF = 81, END_CASE = 82, METHOD = 83, END_METHOD = 84, ASSIGN = 85, 
-    ARROW = 86, NUMBER = 87, IDENT = 88, WS = 89, COMMENT_LINE = 90, COMMENT_PARA = 91, 
-    STRING_LITERAL = 92, PREFIX_OP = 93
+    T__14 = 15, T__15 = 16, T__16 = 17, T__17 = 18, VAR = 19, VAR_INPUT = 20, 
+    VAR_OUTPUT = 21, VAR_IN_OUT = 22, VAR_TEMP = 23, END_VAR = 24, FUNCTION = 25, 
+    END_FUNCTION = 26, FUNCTION_BLOCK = 27, END_FUNCTION_BLOCK = 28, INT = 29, 
+    SINT = 30, DINT = 31, LINT = 32, USINT = 33, UINT = 34, UDINT = 35, 
+    ULINT = 36, REAL = 37, LREAL = 38, BOOL = 39, BYTE = 40, WORD = 41, 
+    DWORD = 42, LWORD = 43, FOR = 44, TO = 45, BY = 46, END_FOR = 47, WHILE = 48, 
+    DO = 49, END_WHILE = 50, REPEAT = 51, UNTIL = 52, END_REPEAT = 53, PROGRAM = 54, 
+    END_PROGRAM = 55, IF = 56, ELSEIF = 57, THEN = 58, ELSE = 59, END_IF = 60, 
+    CASE = 61, OF = 62, END_CASE = 63, METHOD = 64, END_METHOD = 65, ASSIGN = 66, 
+    ARROW = 67, EQ = 68, NEQ = 69, ADD = 70, SUB = 71, MUL = 72, DIV = 73, 
+    EXP = 74, MOD = 75, SHL = 76, SHR = 77, LT = 78, LTE = 79, GT = 80, 
+    GTE = 81, BREAK = 82, CONTINUE = 83, EXIT = 84, RETURN = 85, NUMBER = 86, 
+    IDENT = 87, WS = 88, COMMENT_LINE = 89, COMMENT_PARA = 90, STRING_LITERAL = 91, 
+    PREFIX_OP = 92
   };
 
   enum {
@@ -258,6 +258,11 @@ public:
   public:
     JumpStmtContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *BREAK();
+    antlr4::tree::TerminalNode *CONTINUE();
+    antlr4::tree::TerminalNode *RETURN();
+    ExprContext *expr();
+    antlr4::tree::TerminalNode *EXIT();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -354,6 +359,8 @@ public:
     virtual size_t getRuleIndex() const override;
     RelationExprContext *relationExpr();
     EqualExprContext *equalExpr();
+    antlr4::tree::TerminalNode *EQ();
+    antlr4::tree::TerminalNode *NEQ();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -370,6 +377,10 @@ public:
     virtual size_t getRuleIndex() const override;
     AddExprContext *addExpr();
     RelationExprContext *relationExpr();
+    antlr4::tree::TerminalNode *LT();
+    antlr4::tree::TerminalNode *LTE();
+    antlr4::tree::TerminalNode *GT();
+    antlr4::tree::TerminalNode *GTE();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -386,6 +397,8 @@ public:
     virtual size_t getRuleIndex() const override;
     MultipliExprContext *multipliExpr();
     AddExprContext *addExpr();
+    antlr4::tree::TerminalNode *ADD();
+    antlr4::tree::TerminalNode *SUB();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -402,6 +415,12 @@ public:
     virtual size_t getRuleIndex() const override;
     UnaryExprContext *unaryExpr();
     MultipliExprContext *multipliExpr();
+    antlr4::tree::TerminalNode *MUL();
+    antlr4::tree::TerminalNode *DIV();
+    antlr4::tree::TerminalNode *EXP();
+    antlr4::tree::TerminalNode *MOD();
+    antlr4::tree::TerminalNode *SHL();
+    antlr4::tree::TerminalNode *SHR();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
