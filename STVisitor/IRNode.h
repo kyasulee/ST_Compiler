@@ -171,8 +171,8 @@ struct IRNode {
     }
 };
 
-//extern std::vector<std::shared_ptr<IRNode>> irList;
-//void printIR();
+extern std::vector<std::shared_ptr<IRNode>> irList;
+void printIR();
 
 // 程序节点
 struct ProgramNode : public IRNode {
