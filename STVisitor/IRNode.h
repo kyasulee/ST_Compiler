@@ -61,10 +61,118 @@ struct IRNode {
     std::vector<std::shared_ptr<IRNode>> children; // 子节点
 
     virtual ~IRNode() = default;
+
+    // 增加可视化方法
+    virtual std::string getGraphVizLabel() const {
+        switch (type) {
+            case IRNodeType::Program: return "Program";
+            case IRNodeType::Function: return "Function";
+            case IRNodeType::FunctionBlock: return "FunctionBlock";
+            case IRNodeType::VariableDeclaration: return "VarDecl";
+            case IRNodeType::Assignment: return "Assignment";
+            case IRNodeType::BinaryOp: return "BinaryOp";
+            case IRNodeType::UnaryOp: return "UnaryOp";
+            case IRNodeType::CallFunc: return "CallFunc";
+            case IRNodeType::InputPin: return "InputPin";
+            case IRNodeType::OutputPin: return "OutputPin";
+            case IRNodeType::Selection: return "Selection";
+            case IRNodeType::IfStmt: return "IfStmt";
+            case IRNodeType::CaseStmt: return "CaseStmt";
+            case IRNodeType::Iteration: return "Iteration";
+            case IRNodeType::WhileStmt: return "WhileStmt";
+            case IRNodeType::ForStmt: return "ForStmt";
+            case IRNodeType::RepeatStmt: return "RepeatStmt";
+            case IRNodeType::Constant: return "Constant";
+            case IRNodeType::Identifier: return "Identifier";
+            case IRNodeType::ArrayAccess: return "ArrayAccess";
+            case IRNodeType::StructAccess: return "StructAccess";
+            case IRNodeType::Method: return "Method";
+            case IRNodeType::Params: return "Params";
+            case IRNodeType::JumpStmt: return "JumpStmt";
+            case IRNodeType::BreakStmt: return "BreakStmt";
+            case IRNodeType::ReturnStmt: return "ReturnStmt";
+            case IRNodeType::ContinueStmt: return "ContinueStmt";
+            case IRNodeType::ExitStmt: return "ExitStmt";
+            case IRNodeType::GlobalScope: return "GlobalScope";
+            case IRNodeType::ProgramScope: return "ProgramScope";
+            case IRNodeType::FunctionScope: return "FunctionScope";
+            case IRNodeType::FBScope: return "FBScope";
+            case IRNodeType::BlockScope: return "BlockScope";
+            case IRNodeType::ArrayType: return "ArrayType";
+            case IRNodeType::StructType: return "StructType";
+            case IRNodeType::EnumType: return "EnumType";
+            case IRNodeType::SubRangeType: return "SubRangeType";
+            case IRNodeType::Body: return "Body";
+            default: return "IRNode";
+        }
+    }
+
+    virtual std::vector<std::shared_ptr<IRNode>> getGraphVizChildren() const {
+        return children;
+    }
+
+    virtual std::string getGraphVizColor() const {
+        switch(type) {
+            // 作用域节点 - 蓝色
+            case IRNodeType::GlobalScope:
+            case IRNodeType::ProgramScope:
+            case IRNodeType::FunctionScope:
+            case IRNodeType::FBScope:
+            case IRNodeType::BlockScope:
+                return "lightblue";
+
+            // 声明类节点 - 黄色
+            case IRNodeType::Program:
+            case IRNodeType::Function:
+            case IRNodeType::FunctionBlock:
+            case IRNodeType::VariableDeclaration:
+            case IRNodeType::Method:
+                return "lightyellow";
+
+            // 语句类节点 - 绿色
+            case IRNodeType::Assignment:
+            case IRNodeType::IfStmt:
+            case IRNodeType::CaseStmt:
+            case IRNodeType::WhileStmt:
+            case IRNodeType::ForStmt:
+            case IRNodeType::RepeatStmt:
+            case IRNodeType::ReturnStmt:
+            case IRNodeType::BreakStmt:
+            case IRNodeType::ContinueStmt:
+            case IRNodeType::ExitStmt:
+                return "lightgreen";
+
+            // 表达式类节点 - 紫色
+            case IRNodeType::BinaryOp:
+            case IRNodeType::UnaryOp:
+            case IRNodeType::CallFunc:
+            case IRNodeType::ArrayAccess:
+            case IRNodeType::StructAccess:
+                return "lavender";
+
+            // 类型节点 - 粉色
+            case IRNodeType::ArrayType:
+            case IRNodeType::StructType:
+            case IRNodeType::EnumType:
+            case IRNodeType::SubRangeType:
+                return "lightpink";
+
+            // 基本元素 - 青色
+            case IRNodeType::Constant:
+            case IRNodeType::Identifier:
+            case IRNodeType::InputPin:
+            case IRNodeType::OutputPin:
+            case IRNodeType::Params:
+                return "lightcyan";
+
+            default:
+                return "lightgray";
+        }
+    }
 };
 
-extern std::vector<std::shared_ptr<IRNode>> irList;
-void printIR();
+//extern std::vector<std::shared_ptr<IRNode>> irList;
+//void printIR();
 
 // 程序节点
 struct ProgramNode : public IRNode {
@@ -74,6 +182,24 @@ struct ProgramNode : public IRNode {
 
     ProgramNode(const std::string& name) : name(name) {
         type = IRNodeType::Program;
+    }
+
+    // 可视化
+    std::string getGraphVizLabel() const override {
+        return "Program: " + name;
+    }
+
+    std::vector<std::shared_ptr<IRNode>> getGraphVizChildren() const override {
+        std::vector<std::shared_ptr<IRNode>> allChildren;
+
+        allChildren.insert(allChildren.end(), declarations.begin(), declarations.end());
+        allChildren.insert(allChildren.end(), statements.begin(), statements.end());
+
+        return allChildren;
+    }
+
+    std::string getGraphVizColor() const override {
+        return "lightblue";
     }
 };
 
