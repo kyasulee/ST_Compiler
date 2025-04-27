@@ -213,6 +213,22 @@ struct FunctionNode : public IRNode {
     FunctionNode(const std::string& name, const std::string returnType) : name(name), returnType(returnType) {
         type = IRNodeType::Function;
     }
+
+    // 可视化
+    std::string getGraphVizLabel() const override {
+        return "Function: " + name + " -> " + returnType;
+    }
+
+    std::vector<std::shared_ptr<IRNode>> getGraphVizChildren() const override {
+        std::vector<std::shared_ptr<IRNode>> allChildren;
+        allChildren.insert(allChildren.end(), parameters.begin(), parameters.end());
+        allChildren.insert(allChildren.end(), body.begin(), body.end());
+        return allChildren;
+    }
+
+    std::string getGraphVizColor() const override {
+        return "lightgreen";
+    }
 };
 
 struct MethodNode : public IRNode {
@@ -225,6 +241,20 @@ struct MethodNode : public IRNode {
     MethodNode(const std::string& name, const std::string& returnType)
             : name(name), returnType(returnType) {
         type = IRNodeType::Method;
+    }
+
+    // 可视化
+    std::string getGraphVizLabel() const override {
+        return "Method: " + name + " -> " + returnType;
+    }
+
+    std::vector<std::shared_ptr<IRNode>> getGraphVizChildren() const override {
+        std::vector<std::shared_ptr<IRNode>> allChildren;
+        allChildren.insert(allChildren.end(), parameters.begin(), parameters.end());
+        if(body) {
+            allChildren.push_back(body);
+        }
+        return allChildren;
     }
 };
 
@@ -243,9 +273,26 @@ struct FunctionBlockNode : public IRNode {
     void addMethod(std::shared_ptr<MethodNode> method) {
         methods.push_back(method);
     }
+
+    // 可视化
+    std::string  getGraphVizLabel() const override {
+        return "FunctionBlock: " + name;
+    }
+
+    std::vector<std::shared_ptr<IRNode>> getGraphVizChildren() const override {
+        std::vector<std::shared_ptr<IRNode>> allChildren;
+        allChildren.insert(allChildren.end(), members.begin(), members.end());
+        allChildren.insert(allChildren.end(), methods.begin(), methods.end());
+        if (body) {
+            allChildren.push_back(body);
+        }
+        return allChildren;
+    }
+
+    std::string getGraphVizColor() const override {
+        return "lightyellow";
+    }
 };
-
-
 
 // 变量声明节点
 struct VariableDeclarationNode : public IRNode {
@@ -262,6 +309,22 @@ struct VariableDeclarationNode : public IRNode {
             : name(name), dataType(dataType), initialValue(std::move(initialValue)) {
         type = IRNodeType::VariableDeclaration;
     }
+
+    // 可视化
+    std::string getGraphVizLabel() const override {
+        std::string label = "VarDecl: " + name + " : " + dataType;
+        if(initialValue) {
+            label += " = ...";
+        }
+        return label;
+    }
+
+    std::vector<std::shared_ptr<IRNode>> getGraphVizChildren() const override {
+        if(initialValue) {
+            return {initialValue};
+        }
+        return {};
+    }
 };
 
 // 赋值语句节点
@@ -271,6 +334,15 @@ struct AssignmentNode : public IRNode {
 
     AssignmentNode(std::shared_ptr<IRNode> target, std::shared_ptr<IRNode> value) : target(target), value(value){
         type = IRNodeType::Assignment;
+    }
+
+    // 可视化
+    std::string getGraphVizLabel() const override {
+        return "Assignment";
+    }
+
+    std::vector<std::shared_ptr<IRNode>> getGraphVizChildren() const override {
+        return {target, value};
     }
 };
 
@@ -285,6 +357,15 @@ struct BinaryOpNode : public IRNode {
                  std::shared_ptr<IRNode> right)
         : left(left), op(op), right(right) {
         type =  IRNodeType::BinaryOp;
+    }
+
+    // 可视化
+    std::string getGraphVizLabel() const override {
+        return "BinaryOp: " + op;
+    }
+
+    std::vector<std::shared_ptr<IRNode>> getGraphVizChildren() const override {
+        return {left, right};
     }
 };
 
